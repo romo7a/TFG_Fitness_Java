@@ -7,6 +7,8 @@ package Vista.Mediciones;
 import Controlador.CRUD;
 import Modelo.Mediciones;
 import Modelo.Usuarios;
+import java.time.LocalDateTime;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +21,7 @@ public class CrearMedicion extends javax.swing.JFrame {
     private CRUD crud;
     private Usuarios user;
 
-    public CrearMedicion(CRUD crud,Usuarios user) {
+    public CrearMedicion(CRUD crud, Usuarios user) {
         initComponents();
         this.crud = crud;
         this.user = user;
@@ -67,7 +69,7 @@ public class CrearMedicion extends javax.swing.JFrame {
         txf_gluteos = new javax.swing.JTextField();
         btn_aniadir_medicion = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -203,8 +205,41 @@ public class CrearMedicion extends javax.swing.JFrame {
     private void btn_aniadir_medicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aniadir_medicionActionPerformed
         // TODO add your handling code here:
         try {
+            if (txf_peso.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Rellene el campo del peso ");
+                return;
+            } else if (txf_altura.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Rellene el campo de altura");
+                return;
+            } else if (txf_cuello.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Rellene el campo del cuello");
+                return;
+            } else if (txf_hombros.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Rellene el campo de los hombros");
+                return;
+            } else if (txf_pecho.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Rellene el campo de las pantorrillas");
+                return;
+            } else if (txf_cintura.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Rellene el campo de la cintura");
+                return;
+            } else if (txf_muslo.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Rellene el campo del muslo");
+                return;
+            } else if (txf_pantorillas.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Rellene el campo de las pantorrillas");
+                return;
+            } else if (txf_biceps.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Rellene el campo de biceps");
+                return;
+            } else if (txf_gluteos.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Rellene el campo de gluteo");
+                return;
+            }
+
             medicion = new Mediciones();
-            medicion.setAltura(Long.parseLong(txf_altura.getText().trim()));
+            long altura = Long.parseLong(txf_altura.getText().trim());
+            medicion.setAltura(altura);
             medicion.setBiceps(Integer.parseInt(txf_biceps.getText().trim()));
             medicion.setCintura(Integer.parseInt(txf_cintura.getText().trim()));
             medicion.setCuello(Long.parseLong(txf_cuello.getText().trim()));
@@ -214,10 +249,19 @@ public class CrearMedicion extends javax.swing.JFrame {
             medicion.setMuslo(Integer.parseInt(txf_muslo.getText().trim()));
             medicion.setPantorrillas(Integer.parseInt(txf_pantorillas.getText().trim()));
             medicion.setPecho(Integer.parseInt(txf_pecho.getText().trim()));
-            medicion.setPeso(Long.parseLong(txf_peso.getText().trim()));
+            long peso = Long.parseLong(txf_peso.getText().trim());
+            medicion.setPeso(peso);
+            medicion.setFechaMedicion(LocalDateTime.now().toString());
+//  IMC            Fórmula: peso (kg) / [estatura (m)]2
+
+            medicion.setImc(peso+(altura*altura));
+
+            crud.InsertarMedicion(medicion);            
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Los datos deben ser numéricos");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se han podido guardar tus mediciones");
         }
     }//GEN-LAST:event_btn_aniadir_medicionActionPerformed
 

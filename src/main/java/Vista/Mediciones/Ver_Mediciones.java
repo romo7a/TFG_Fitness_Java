@@ -26,12 +26,12 @@ public class Ver_Mediciones extends javax.swing.JFrame {
     public Ver_Mediciones(CRUD crud, Usuarios user) {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-
         this.crud = crud;
         this.user = user;
         lst_mediciones = user.getMedicionesList();
-        cargar_mediciones();
         dtm_mediciones = (DefaultTableModel) tb_mediciones.getModel();
+        cargar_mediciones();       
+        
     }
 
     /**
@@ -57,7 +57,7 @@ public class Ver_Mediciones extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tb_mediciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

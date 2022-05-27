@@ -33,5 +33,7 @@ public interface I_CRUD {
 
     public boolean InsertarRutina(Rutina rutina);
     
+    public boolean InsertarMedicion(Mediciones medicion);
+    
     
 }
