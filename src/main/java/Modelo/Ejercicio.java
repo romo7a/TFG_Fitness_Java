@@ -144,8 +144,7 @@ public class Ejercicio implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombre;
+        return "Modelo.Ejercicio[ id=" + id + " ]";
     }
-        
-
+    
 }

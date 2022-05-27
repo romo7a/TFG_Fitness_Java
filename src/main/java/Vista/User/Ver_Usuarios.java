@@ -148,6 +148,7 @@ public class Ver_Usuarios extends javax.swing.JFrame {
         if (tabla_users.getSelectedRow() != -1) {
             Detalle_usuarios detalle_usuarios = new Detalle_usuarios();
             detalle_usuarios.setUser(users_list.get(tabla_users.getSelectedRow()));
+            detalle_usuarios.setCrud(crud);
             detalle_usuarios.setVisible(true);
         }
 

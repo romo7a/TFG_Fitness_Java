@@ -119,7 +119,7 @@ public class Crear_user extends javax.swing.JFrame {
         jLabel5.setText("Fecha Nacimiento");
         jPanel1.add(jLabel5);
 
-        txf_fecha_nace.setText("07/08/1980");
+        txf_fecha_nace.setText("01-01-2000");
         txf_fecha_nace.setToolTipText("dd-MM-yyyy");
         jPanel1.add(txf_fecha_nace);
 
@@ -157,7 +157,6 @@ public class Crear_user extends javax.swing.JFrame {
 
         lbl_imagen_user.setText("Añade tu imagen");
         lbl_imagen_user.setToolTipText("Añade la imagen del usuario");
-        lbl_imagen_user.setBorder(new javax.swing.border.MatteBorder(null));
         lbl_imagen_user.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbl_imagen_userMouseClicked(evt);
@@ -232,6 +231,10 @@ public class Crear_user extends javax.swing.JFrame {
         u.setEmail(txf_email.getText().trim());
         u.setDireccion(txf_direccion.getText().trim());
         u.setFechaNacimiento(txf_fecha_nace.getText().trim());
+        if (lista_rutinas.size()<=0) {
+            JOptionPane.showMessageDialog(this, "Cree o seleccione una rutina antes de crear el usuario");
+            return;
+        }
         u.setIdRutina(lista_rutinas.get(cb_rutina.getSelectedIndex()));
 
         if (icon != null) {
@@ -254,6 +257,8 @@ public class Crear_user extends javax.swing.JFrame {
 
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG", "png");
+        fileChooser.setMultiSelectionEnabled(false);
+        fileChooser.setCurrentDirectory(new File("./"));
         fileChooser.addChoosableFileFilter(filter);
         int seleccion = fileChooser.showSaveDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {

@@ -5,22 +5,18 @@
 package Modelo;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -72,13 +68,13 @@ public class Mediciones implements Serializable {
     private Integer biceps;
     @Column(name = "gluteos")
     private Integer gluteos;
-    @Column(name = "fecha_medicion")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaMedicion;
+    @Column(name = "fecha_medicion", length = 26)
+    private String fechaMedicion;
     @Column(name = "imc")
     private Long imc;
-    @OneToMany(mappedBy = "idMediciones")
-    private List<Usuarios> usuariosList;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private Usuarios idUsuario;
 
     public Mediciones() {
     }
@@ -175,11 +171,11 @@ public class Mediciones implements Serializable {
         this.gluteos = gluteos;
     }
 
-    public Date getFechaMedicion() {
+    public String getFechaMedicion() {
         return fechaMedicion;
     }
 
-    public void setFechaMedicion(Date fechaMedicion) {
+    public void setFechaMedicion(String fechaMedicion) {
         this.fechaMedicion = fechaMedicion;
     }
 
@@ -191,13 +187,12 @@ public class Mediciones implements Serializable {
         this.imc = imc;
     }
 
-    @XmlTransient
-    public List<Usuarios> getUsuariosList() {
-        return usuariosList;
+    public Usuarios getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuariosList(List<Usuarios> usuariosList) {
-        this.usuariosList = usuariosList;
+    public void setIdUsuario(Usuarios idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override

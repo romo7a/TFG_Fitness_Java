@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btn_aniadir_medicion" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="lbl_gluteos" max="32767" attributes="0"/>
+                              <Component id="lbl_biceps" max="32767" attributes="0"/>
+                              <Component id="lb_pantorrillas" max="32767" attributes="0"/>
+                              <Component id="lb_muslo" max="32767" attributes="0"/>
+                              <Component id="tb_cintura" max="32767" attributes="0"/>
+                              <Component id="lb_pecho" max="32767" attributes="0"/>
+                              <Component id="lb_hombros" max="32767" attributes="0"/>
+                              <Component id="lb_cuello" max="32767" attributes="0"/>
+                              <Component id="lb_altura" max="32767" attributes="0"/>
+                              <Component id="lb_peso" pref="256" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txf_peso" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txf_altura" pref="774" max="32767" attributes="0"/>
+                              <Component id="txf_cuello" pref="774" max="32767" attributes="0"/>
+                              <Component id="txf_hombros" pref="774" max="32767" attributes="0"/>
+                              <Component id="txf_pecho" pref="774" max="32767" attributes="0"/>
+                              <Component id="txf_cintura" pref="774" max="32767" attributes="0"/>
+                              <Component id="txf_muslo" pref="774" max="32767" attributes="0"/>
+                              <Component id="txf_pantorillas" pref="774" max="32767" attributes="0"/>
+                              <Component id="txf_biceps" pref="774" max="32767" attributes="0"/>
+                              <Component id="txf_gluteos" pref="774" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txf_peso" pref="39" max="32767" attributes="0"/>
+                      <Component id="lb_peso" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txf_altura" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lb_altura" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txf_cuello" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lb_cuello" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txf_hombros" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lb_hombros" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txf_pecho" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lb_pecho" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txf_cintura" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tb_cintura" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txf_muslo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lb_muslo" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txf_pantorillas" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lb_pantorrillas" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txf_biceps" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lbl_biceps" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txf_gluteos" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lbl_gluteos" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="111" max="32767" attributes="0"/>
+                  <Component id="btn_aniadir_medicion" min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lb_peso">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Peso (En Kilos):"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txf_peso">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txf_altura">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_altura">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Altura "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txf_cuello">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_cuello">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cuello"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_hombros">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hombros"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txf_hombros">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_pecho">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pecho"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txf_pecho">
+        </Component>
+        <Component class="javax.swing.JLabel" name="tb_cintura">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cintura"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txf_cintura">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_muslo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Muslo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txf_muslo">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lb_pantorrillas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pantorrillas"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txf_pantorillas">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_biceps">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Biceps"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txf_biceps">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_gluteos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Gluteos"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txf_gluteos">
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_aniadir_medicion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="A&#xf1;adir Medici&#xf3;n"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_aniadir_medicionActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

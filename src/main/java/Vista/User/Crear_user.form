@@ -113,7 +113,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txf_fecha_nace">
           <Properties>
-            <Property name="text" type="java.lang.String" value="07/08/1980"/>
+            <Property name="text" type="java.lang.String" value="01-01-2000"/>
             <Property name="toolTipText" type="java.lang.String" value="dd-MM-yyyy"/>
           </Properties>
         </Component>
@@ -207,11 +207,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="A&#xf1;ade tu imagen"/>
             <Property name="toolTipText" type="java.lang.String" value="A&#xf1;ade la imagen del usuario"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-                <MatteColorBorder/>
-              </Border>
-            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_imagen_userMouseClicked"/>

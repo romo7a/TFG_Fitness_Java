@@ -286,7 +286,12 @@ public class Crear_rutina extends javax.swing.JFrame {
         Rutina r = new Rutina();
         r.setNombre(txf_nombre_rutina.getText().trim());
         r.setDescripcion(txa_descripcion.getText().trim());
+        if (lst_ejercicios_añadir_BBDD.size() <= 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione al menos un ejercicio antes de crear la rutina");
+            return;
+        }
         r.setEjercicioList(lst_ejercicios_añadir_BBDD);
+        
 
         if (crud.InsertarRutina(r)) {
             JOptionPane.showMessageDialog(this, "Rutina creada correctamente");

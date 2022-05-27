@@ -5,6 +5,7 @@
 package Controlador;
 
 import Modelo.Ejercicio;
+import Modelo.Mediciones;
 import Modelo.Rutina;
 import Modelo.TipoEjercicio;
 import Modelo.Usuarios;
@@ -32,6 +33,5 @@ public interface I_CRUD {
 
     public boolean InsertarRutina(Rutina rutina);
     
-    public Rutina ConsultarRutina(int id_rutina);
-
+    
 }

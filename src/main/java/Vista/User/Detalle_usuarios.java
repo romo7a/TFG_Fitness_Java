@@ -6,7 +6,9 @@ package Vista.User;
 
 import Controlador.CRUD;
 import Modelo.Usuarios;
+import Vista.Mediciones.Ver_Mediciones;
 import Vista.Rutina.Ver_rutina_user;
+import Vista.VentanaPrincipal;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -77,6 +79,11 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButton1.setText("Ver Mediciones");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btn_ver_rutina.setText("Ver Rutina Actual");
         btn_ver_rutina.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +199,12 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         Ver_rutina_user rutina = new Ver_rutina_user(user, crud);
         rutina.setVisible(true);
     }//GEN-LAST:event_btn_ver_rutinaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Ver_Mediciones v_mediciones = new Ver_Mediciones(crud, user);
+        v_mediciones.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

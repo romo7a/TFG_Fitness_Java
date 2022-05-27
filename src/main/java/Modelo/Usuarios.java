@@ -5,7 +5,9 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +18,10 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -62,9 +66,8 @@ public class Usuarios implements Serializable {
     @Lob
     @Column(name = "IMAGEN_PERFIL")
     private byte[] imagenPerfil;
-    @JoinColumn(name = "id_mediciones", referencedColumnName = "id")
-    @ManyToOne
-    private Mediciones idMediciones;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<Mediciones> medicionesList;
     @JoinColumn(name = "id_rutina", referencedColumnName = "id")
     @ManyToOne
     private Rutina idRutina;
@@ -153,12 +156,13 @@ public class Usuarios implements Serializable {
         this.imagenPerfil = imagenPerfil;
     }
 
-    public Mediciones getIdMediciones() {
-        return idMediciones;
+    @XmlTransient
+    public List<Mediciones> getMedicionesList() {
+        return medicionesList;
     }
 
-    public void setIdMediciones(Mediciones idMediciones) {
-        this.idMediciones = idMediciones;
+    public void setMedicionesList(List<Mediciones> medicionesList) {
+        this.medicionesList = medicionesList;
     }
 
     public Rutina getIdRutina() {

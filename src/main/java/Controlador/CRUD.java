@@ -5,6 +5,7 @@
 package Controlador;
 
 import Modelo.Ejercicio;
+import Modelo.Mediciones;
 import Modelo.Rutina;
 import Modelo.TipoEjercicio;
 import Modelo.Usuarios;
@@ -141,17 +142,5 @@ public class CRUD implements I_CRUD {
         }
     }
 
-    @Override
-    public Rutina ConsultarRutina(int id_rutina) {
-        try {
-            Rutina rut = em.find(Rutina.class, id_rutina);
-            if (rut != null) {
-                return rut;
-            }
-        } catch (Exception e) {
-            System.out.println("Error al cargar el ejercicio de la BBDD " + e.getMessage());
-        }
-        return null;
-    }
 
 }
