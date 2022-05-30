@@ -11,6 +11,7 @@ import Vista.Rutina.Ver_rutina_user;
 import Vista.VentanaPrincipal;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,7 +32,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
     public Detalle_usuarios() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        
 
     }
 
@@ -50,7 +50,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
 
         jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         btn_ver_rutina = new javax.swing.JButton();
         lbl_image = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -66,6 +65,13 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_fecha_nace = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txf_direccion = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jmi_mediciones = new javax.swing.JMenuItem();
+        jmi_rutina = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jmi_editar = new javax.swing.JMenuItem();
+        jmi_eliminar = new javax.swing.JMenuItem();
 
         jTextField1.setText("jTextField1");
 
@@ -77,13 +83,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jButton1.setText("Ver Mediciones");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         btn_ver_rutina.setText("Ver Rutina Actual");
         btn_ver_rutina.addActionListener(new java.awt.event.ActionListener() {
@@ -97,25 +96,20 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(349, 349, 349)
+                .addComponent(lbl_image, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                .addGap(344, 344, 344))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lbl_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_ver_rutina, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE))))
+                .addComponent(btn_ver_rutina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_image, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_ver_rutina, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbl_image, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_ver_rutina, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -164,6 +158,43 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_direccion.setText("jTextField3");
         jPanel1.add(txf_direccion);
 
+        jMenu1.setText("Ver");
+
+        jmi_mediciones.setText("Mediciones");
+        jmi_mediciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_medicionesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmi_mediciones);
+
+        jmi_rutina.setText("Rutina");
+        jmi_rutina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_rutinaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmi_rutina);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Editar");
+
+        jmi_editar.setText("Editar Usuario");
+        jMenu2.add(jmi_editar);
+
+        jmi_eliminar.setText("Eliminar Usuario");
+        jmi_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_eliminarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmi_eliminar);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,17 +225,38 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         cargarImagen();
     }//GEN-LAST:event_formWindowOpened
 
-    private void btn_ver_rutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_rutinaActionPerformed
-        // TODO add your handling code here:
-        Ver_rutina_user rutina = new Ver_rutina_user(user, crud);
-        rutina.setVisible(true);
-    }//GEN-LAST:event_btn_ver_rutinaActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jmi_medicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_medicionesActionPerformed
         // TODO add your handling code here:
         Ver_Mediciones v_mediciones = new Ver_Mediciones(crud, user);
         v_mediciones.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jmi_medicionesActionPerformed
+
+    private void jmi_rutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_rutinaActionPerformed
+        // TODO add your handling code here:
+        Ver_rutina_user rutina = new Ver_rutina_user(user, crud);
+        rutina.setVisible(true);
+    }//GEN-LAST:event_jmi_rutinaActionPerformed
+
+    private void btn_ver_rutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_rutinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ver_rutinaActionPerformed
+
+    private void jmi_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_eliminarActionPerformed
+        // TODO add your handling code here:user
+//        yes = 0, no = 1 , cancel = 2
+        int option = JOptionPane.showConfirmDialog(this, "Desea eleminar el usuario " + this.user.getNombre());
+        switch (option) {
+            case 0:               
+                if (crud.eliminarUsuario(this.user)) {
+                    JOptionPane.showMessageDialog(this, "Usuario eliminado correctamente");
+                }                
+                this.dispose();
+                break;
+            default:
+                break;
+        }
+
+    }//GEN-LAST:event_jmi_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,16 +295,22 @@ public class Detalle_usuarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_ver_rutina;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JMenuItem jmi_editar;
+    private javax.swing.JMenuItem jmi_eliminar;
+    private javax.swing.JMenuItem jmi_mediciones;
+    private javax.swing.JMenuItem jmi_rutina;
     private javax.swing.JLabel lbl_image;
     private javax.swing.JTextField txf_DNI;
     private javax.swing.JTextField txf_apellido;

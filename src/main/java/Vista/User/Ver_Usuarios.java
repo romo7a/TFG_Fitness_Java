@@ -10,6 +10,7 @@ import java.awt.Button;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,6 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 /**
  *
@@ -35,13 +35,10 @@ public class Ver_Usuarios extends javax.swing.JFrame {
     public Ver_Usuarios(CRUD crud) {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-
         this.crud = crud;
-        users_list = crud.ConsultarUsuario();
-        dtm = (DefaultTableModel) tabla_users.getModel();
-        for (Usuarios user : users_list) {
-            dtm.addRow(new Object[]{user.getNombre(), user.getApellido(), user.getDni(), user.getDireccion(), (Button) btn_detalle});
-        }
+        this.users_list = new ArrayList<Usuarios>();
+        this.dtm = (DefaultTableModel) tabla_users.getModel();
+        cargarDatos();
 
     }
 
@@ -70,8 +67,8 @@ public class Ver_Usuarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
             }
         });
 
@@ -138,10 +135,6 @@ public class Ver_Usuarios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowOpened
-
     private void tabla_usersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_usersMouseClicked
         // TODO add your handling code here:
 
@@ -162,7 +155,7 @@ public class Ver_Usuarios extends javax.swing.JFrame {
 //            Creamos la página, que le decimos que tiene el tamaño a4
         PDPage pagina = new PDPage(PDRectangle.A4);
         documento.addPage(pagina);
-        
+
         try (PDPageContentStream contentStream = new PDPageContentStream(documento, pagina, PDPageContentStream.AppendMode.APPEND, true, true)) {
             float x = 30f;
             float y = pagina.getMediaBox().getUpperRightY() - 30f;
@@ -170,7 +163,7 @@ public class Ver_Usuarios extends javax.swing.JFrame {
             float rowHeight = 15.0f;
             float colWidth = 40.0f;
             contentStream.saveGraphicsState();
-            
+
 //
 ////            Le añadimos a nuestro documento el formato de la página
 //            documento.addPage(pagina);
@@ -182,7 +175,6 @@ public class Ver_Usuarios extends javax.swing.JFrame {
 //            contentStream.setFont(PDType1Font.TIMES_ROMAN, 12);
 ////            Le indicamos la línea donde queremos que empiece a escribir
 //            contentStream.newLineAtOffset(20, pagina.getMediaBox().getHeight() - 52);
-            
             //Color de linea
             contentStream.setStrokingColor(Color.BLACK);
             //Grosor de línea
@@ -220,6 +212,11 @@ public class Ver_Usuarios extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        cargarDatos();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -264,4 +261,19 @@ public class Ver_Usuarios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_users;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarDatos() {
+//        try {
+            users_list.clear();
+            dtm.setRowCount(0);
+            users_list = crud.ConsultarUsuario();
+            dtm = (DefaultTableModel) tabla_users.getModel();
+            for (Usuarios user : users_list) {
+                dtm.addRow(new Object[]{user.getNombre(), user.getApellido(), user.getDni(), user.getDireccion(), (Button) btn_detalle});
+            }
+//        } catch (Exception e) {
+//            System.err.println(e.getMessage());
+//        }
+
+    }
 }

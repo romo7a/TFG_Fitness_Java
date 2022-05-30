@@ -32,8 +32,9 @@ public interface I_CRUD {
     public Ejercicio ConsultarEjercicio(int id_ejercicio);
 
     public boolean InsertarRutina(Rutina rutina);
-    
+
     public boolean InsertarMedicion(Mediciones medicion);
-    
-    
+
+    public boolean eliminarUsuario(Usuarios user);
+
 }

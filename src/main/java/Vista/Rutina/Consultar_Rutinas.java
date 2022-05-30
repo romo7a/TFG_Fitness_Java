@@ -23,6 +23,7 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
     private DefaultTableModel dtm;
     private List<Rutina> lst_rutina;
     private DefaultListModel dlm_ejercicios;
+    private Ejercicio e;
 
     public Consultar_Rutinas(CRUD crud) {
         initComponents();
@@ -66,6 +67,11 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
         lbl_imagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -105,6 +111,12 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(lst_ejercicio);
 
+        lbl_imagen.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                lbl_imagenComponentResized(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -117,7 +129,7 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                        .addComponent(lbl_imagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbl_imagen, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
                     .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
@@ -170,16 +182,40 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index = lst_ejercicio.getSelectedIndex();
         if (index != -1) {
-            Ejercicio e = (Ejercicio) dlm_ejercicios.get(lst_ejercicio.getSelectedIndex());
+//            voy a intentar guardar eser ejercicio como variable local de la clase, y luego irla cargando cada vez que se modifique el tamaño
+            e = (Ejercicio) dlm_ejercicios.get(lst_ejercicio.getSelectedIndex());
             if (e.getImagen() != null) {
                 lbl_imagen.setIcon(new ImageIcon(new ImageIcon(e.getImagen()).getImage().getScaledInstance(lbl_imagen.getWidth(), lbl_imagen.getHeight(), Image.SCALE_DEFAULT)));
             } else {
                 lbl_imagen.setIcon(new ImageIcon());
             }
-
         }
 
     }//GEN-LAST:event_lst_ejercicioMouseClicked
+
+    private void lbl_imagenComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_lbl_imagenComponentResized
+        // TODO add your handling code here:
+//        if (e != null) {
+//            lbl_imagen.setIcon(new ImageIcon());
+//            if (e.getImagen() != null) {
+//                lbl_imagen.setIcon(new ImageIcon(new ImageIcon(e.getImagen()).getImage().getScaledInstance(lbl_imagen.getWidth(), lbl_imagen.getHeight(), Image.SCALE_DEFAULT)));
+//            } else {
+//                lbl_imagen.setIcon(new ImageIcon());
+//            }
+//        }
+    }//GEN-LAST:event_lbl_imagenComponentResized
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        // TODO add your handling code here:        
+//        if (e != null) {
+//            lbl_imagen.setIcon(null);            
+//            if (e.getImagen() != null) {
+//                lbl_imagen.setIcon(new ImageIcon(new ImageIcon(e.getImagen()).getImage().getScaledInstance(lbl_imagen.getWidth(), lbl_imagen.getHeight(), Image.SCALE_DEFAULT)));
+//            } else {
+//                lbl_imagen.setIcon(new ImageIcon());
+//            }
+//        }
+    }//GEN-LAST:event_formComponentResized
 
     /**
      * @param args the command line arguments

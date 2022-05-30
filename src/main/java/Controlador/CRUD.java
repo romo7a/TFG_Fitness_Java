@@ -155,4 +155,17 @@ public class CRUD implements I_CRUD {
         }
     }
 
+    @Override
+    public boolean eliminarUsuario(Usuarios user) {
+        try {
+            em.getTransaction().begin();
+            Usuarios u = em.merge(user);
+            em.remove(u);
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

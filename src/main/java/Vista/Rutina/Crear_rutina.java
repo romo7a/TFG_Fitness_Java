@@ -291,7 +291,6 @@ public class Crear_rutina extends javax.swing.JFrame {
             return;
         }
         r.setEjercicioList(lst_ejercicios_añadir_BBDD);
-        
 
         if (crud.InsertarRutina(r)) {
             JOptionPane.showMessageDialog(this, "Rutina creada correctamente");
@@ -347,7 +346,7 @@ public class Crear_rutina extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:        
-        Crear_ejercicio crear_ej = new Crear_ejercicio(crud);        
+        Crear_ejercicio crear_ej = new Crear_ejercicio(crud);
         crear_ej.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -417,11 +416,14 @@ public class Crear_rutina extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargar_cb() {
-        listaEjercicios.clear();
-        cb_ejercicios.removeAllItems();
-        listaEjercicios = crud.ListarEjercicios();
-        for (Ejercicio ejercicio : listaEjercicios) {
-            cb_ejercicios.addItem(ejercicio.getNombre());
+        try {
+            listaEjercicios.clear();
+            cb_ejercicios.removeAllItems();
+            listaEjercicios = crud.ListarEjercicios();
+            for (Ejercicio ejercicio : listaEjercicios) {
+                cb_ejercicios.addItem(ejercicio.getNombre());
+            }
+        } catch (Exception e) {
         }
 
     }
