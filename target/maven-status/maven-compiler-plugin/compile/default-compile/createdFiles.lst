@@ -27,11 +27,13 @@ Vista\User\Detalle_usuarios$4.class
 Vista\Rutina\Crear_rutina$6.class
 Vista\Mediciones\Ver_Mediciones.class
 Vista\Rutina\Consultar_Rutinas$4.class
+Vista\User\Detalle_usuarios$8.class
 Vista\VentanaPrincipal$1.class
 Vista\Rutina\Ver_rutina_user$3.class
 Vista\User\Crear_user$1.class
 Vista\User\Detalle_usuarios$1.class
 Vista\User\Ver_Usuarios$2.class
+Vista\Mediciones\Ver_Mediciones$4.class
 Vista\VentanaPrincipal$4.class
 Modelo\Uno\TipoEjercicio_.class
 Vista\User\Detalle_usuarios.class
@@ -46,11 +48,13 @@ Vista\Ejercicio\Crear_ejercicio$3.class
 Vista\Rutina\Ver_rutina_user.class
 Vista\User\Ver_Usuarios$3.class
 Modelo\Uno\Ejercicio_.class
+Vista\User\Detalle_usuarios$7.class
 Modelo\Usuarios.class
 Vista\Rutina\Consultar_Rutinas$6.class
 Vista\Rutina\Crear_rutina$4.class
 Vista\VentanaPrincipal.class
 Pruebas\main.class
+Vista\Mediciones\Ver_Mediciones$5.class
 Vista\User\Crear_user$5.class
 Modelo\Uno\Rutina_.class
 Vista\User\Detalle_usuarios$6.class
@@ -59,6 +63,7 @@ Vista\Rutina\Crear_rutina$2.class
 Vista\User\Ver_Usuarios$1.class
 Vista\User\Crear_user$3.class
 Vista\Rutina\Consultar_Rutinas.class
+Vista\User\Detalle_usuarios$9.class
 Vista\Mediciones\Ver_Mediciones$2.class
 Vista\User\Ver_Usuarios.class
 Vista\Rutina\Crear_rutina.class

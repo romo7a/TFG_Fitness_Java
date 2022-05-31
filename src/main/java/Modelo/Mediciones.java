@@ -5,6 +5,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,30 +49,31 @@ public class Mediciones implements Serializable {
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @Column(name = "peso")
-    private Long peso;
-    @Column(name = "altura")
-    private Long altura;
-    @Column(name = "cuello")
-    private Long cuello;
-    @Column(name = "hombros")
-    private Integer hombros;
-    @Column(name = "pecho")
-    private Integer pecho;
-    @Column(name = "cintura")
-    private Integer cintura;
-    @Column(name = "muslo")
-    private Integer muslo;
-    @Column(name = "pantorrillas")
-    private Integer pantorrillas;
-    @Column(name = "biceps")
-    private Integer biceps;
-    @Column(name = "gluteos")
-    private Integer gluteos;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "peso", precision = 10, scale = 2)
+    private BigDecimal peso;
+    @Column(name = "altura", precision = 10, scale = 2)
+    private BigDecimal altura;
+    @Column(name = "cuello", precision = 10, scale = 2)
+    private BigDecimal cuello;
+    @Column(name = "hombros", precision = 10, scale = 2)
+    private BigDecimal hombros;
+    @Column(name = "pecho", precision = 10, scale = 2)
+    private BigDecimal pecho;
+    @Column(name = "cintura", precision = 10, scale = 2)
+    private BigDecimal cintura;
+    @Column(name = "muslo", precision = 10, scale = 2)
+    private BigDecimal muslo;
+    @Column(name = "pantorrillas", precision = 10, scale = 2)
+    private BigDecimal pantorrillas;
+    @Column(name = "biceps", precision = 10, scale = 2)
+    private BigDecimal biceps;
+    @Column(name = "gluteos", precision = 10, scale = 2)
+    private BigDecimal gluteos;
     @Column(name = "fecha_medicion", length = 26)
     private String fechaMedicion;
-    @Column(name = "imc")
-    private Long imc;
+    @Column(name = "imc", precision = 10, scale = 2)
+    private BigDecimal imc;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private Usuarios idUsuario;
@@ -91,83 +93,83 @@ public class Mediciones implements Serializable {
         this.id = id;
     }
 
-    public Long getPeso() {
+    public BigDecimal getPeso() {
         return peso;
     }
 
-    public void setPeso(Long peso) {
+    public void setPeso(BigDecimal peso) {
         this.peso = peso;
     }
 
-    public Long getAltura() {
+    public BigDecimal getAltura() {
         return altura;
     }
 
-    public void setAltura(Long altura) {
+    public void setAltura(BigDecimal altura) {
         this.altura = altura;
     }
 
-    public Long getCuello() {
+    public BigDecimal getCuello() {
         return cuello;
     }
 
-    public void setCuello(Long cuello) {
+    public void setCuello(BigDecimal cuello) {
         this.cuello = cuello;
     }
 
-    public Integer getHombros() {
+    public BigDecimal getHombros() {
         return hombros;
     }
 
-    public void setHombros(Integer hombros) {
+    public void setHombros(BigDecimal hombros) {
         this.hombros = hombros;
     }
 
-    public Integer getPecho() {
+    public BigDecimal getPecho() {
         return pecho;
     }
 
-    public void setPecho(Integer pecho) {
+    public void setPecho(BigDecimal pecho) {
         this.pecho = pecho;
     }
 
-    public Integer getCintura() {
+    public BigDecimal getCintura() {
         return cintura;
     }
 
-    public void setCintura(Integer cintura) {
+    public void setCintura(BigDecimal cintura) {
         this.cintura = cintura;
     }
 
-    public Integer getMuslo() {
+    public BigDecimal getMuslo() {
         return muslo;
     }
 
-    public void setMuslo(Integer muslo) {
+    public void setMuslo(BigDecimal muslo) {
         this.muslo = muslo;
     }
 
-    public Integer getPantorrillas() {
+    public BigDecimal getPantorrillas() {
         return pantorrillas;
     }
 
-    public void setPantorrillas(Integer pantorrillas) {
+    public void setPantorrillas(BigDecimal pantorrillas) {
         this.pantorrillas = pantorrillas;
     }
 
-    public Integer getBiceps() {
+    public BigDecimal getBiceps() {
         return biceps;
     }
 
-    public void setBiceps(Integer biceps) {
+    public void setBiceps(BigDecimal biceps) {
         this.biceps = biceps;
     }
 
-    public Integer getGluteos() {
+    public BigDecimal getGluteos() {
         return gluteos;
     }
 
-    public void setGluteos(Integer gluteos) {
+    public void setGluteos(BigDecimal gluteos) {
         this.gluteos = gluteos;
     }
 
@@ -179,11 +181,11 @@ public class Mediciones implements Serializable {
         this.fechaMedicion = fechaMedicion;
     }
 
-    public Long getImc() {
+    public BigDecimal getImc() {
         return imc;
     }
 
-    public void setImc(Long imc) {
+    public void setImc(BigDecimal imc) {
         this.imc = imc;
     }
 

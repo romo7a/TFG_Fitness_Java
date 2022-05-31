@@ -7,6 +7,8 @@ package Vista.Mediciones;
 import Controlador.CRUD;
 import Modelo.Mediciones;
 import Modelo.Usuarios;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -209,36 +211,42 @@ public class CrearMedicion extends javax.swing.JFrame {
             comprobacionesUnidadesMedicion();
 
             medicion = new Mediciones();
-            long altura = Long.parseLong(txf_altura.getText().trim());
+            BigDecimal altura = new BigDecimal(txf_altura.getText().trim());
             medicion.setAltura(altura);
-            medicion.setBiceps(Integer.parseInt(txf_biceps.getText().trim()));
-            medicion.setCintura(Integer.parseInt(txf_cintura.getText().trim()));
-            medicion.setCuello(Long.parseLong(txf_cuello.getText().trim()));
-            medicion.setGluteos(Integer.parseInt(txf_gluteos.getText().trim()));
-            medicion.setHombros(Integer.parseInt(txf_hombros.getText().trim()));
+            medicion.setBiceps(new BigDecimal(txf_biceps.getText().trim()));
+            medicion.setCintura(new BigDecimal(txf_cintura.getText().trim()));
+            medicion.setCuello(new BigDecimal(txf_cuello.getText().trim()));
+            medicion.setGluteos(new BigDecimal(txf_gluteos.getText().trim()));
+            medicion.setHombros(new BigDecimal(txf_hombros.getText().trim()));
             medicion.setIdUsuario(user);
-            medicion.setMuslo(Integer.parseInt(txf_muslo.getText().trim()));
-            medicion.setPantorrillas(Integer.parseInt(txf_pantorillas.getText().trim()));
-            medicion.setPecho(Integer.parseInt(txf_pecho.getText().trim()));
-            long peso;
+            medicion.setMuslo(new BigDecimal(txf_muslo.getText().trim()));
+            medicion.setPantorrillas(new BigDecimal(txf_pantorillas.getText().trim()));
+            medicion.setPecho(new BigDecimal(txf_pecho.getText().trim()));
+            BigDecimal peso;
             if (txf_peso.getText().trim().contains(",")) {
-                peso = Long.parseLong(txf_peso.getText().trim().replaceFirst(",", "."));
+                peso = new BigDecimal(txf_peso.getText().trim().replaceFirst(",", "."));
                 medicion.setPeso(peso);
             } else {
-                peso = Long.parseLong(txf_peso.getText().trim());
+                peso = new BigDecimal(txf_peso.getText().trim());
                 medicion.setPeso(peso);
             }
             medicion.setFechaMedicion(LocalDateTime.now().toString());
 //  IMC            Fórmula: peso (kg) / [estatura (m)]2
+            altura = altura.divide(new BigDecimal(100), 2, RoundingMode.HALF_UP);
+            BigDecimal altura2 = altura.multiply(altura);
+            altura2 = peso.divide(altura2, 2, RoundingMode.HALF_UP);
 
-            medicion.setImc(peso + ((altura * altura) / 100));
+            medicion.setImc(altura2);
 
             crud.InsertarMedicion(medicion);
+            JOptionPane.showMessageDialog(this, "Medidas añadidas correctamente");
+            this.dispose();
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Los datos deben ser numéricos");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "No se han podido guardar tus mediciones");
+//            JOptionPane.showMessageDialog(this, "No se han podido guardar tus mediciones");
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_btn_aniadir_medicionActionPerformed
 
@@ -337,10 +345,7 @@ public class CrearMedicion extends javax.swing.JFrame {
     }
 
     private void comprobacionesUnidadesMedicion() {
-        if (txf_peso.getText().trim().contains(",") || txf_peso.getText().trim().contains(".")) {
-            JOptionPane.showMessageDialog(this, "Rellene el campo del peso ");
-            return;
-        } else if (txf_altura.getText().trim().contains(",") || txf_altura.getText().trim().contains(".")) {
+        if (txf_altura.getText().trim().contains(",") || txf_altura.getText().trim().contains(".")) {
             JOptionPane.showMessageDialog(this, "La altura debe estar dada en cm");
             return;
         } else if (txf_cuello.getText().trim().contains(",") || txf_cuello.getText().trim().contains(".")) {

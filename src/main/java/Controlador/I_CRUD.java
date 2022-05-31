@@ -38,5 +38,7 @@ public interface I_CRUD {
     public boolean eliminarUsuario(Usuarios user);
     
     public boolean actualizarUsuario(Usuarios user);
+    
+    public List<Mediciones> medicionesUser(int idUser);
 
 }

@@ -192,4 +192,19 @@ public class CRUD implements I_CRUD {
 
     }
 
+    @Override
+    public List<Mediciones> medicionesUser(int idUser) {
+        Usuarios user = null;
+        try {
+            // Primero buscamos que el usuario exista
+            user = em.find(Usuarios.class, idUser);
+
+            return user.getMedicionesList();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return user.getMedicionesList();
+        }
+
+    }
+
 }

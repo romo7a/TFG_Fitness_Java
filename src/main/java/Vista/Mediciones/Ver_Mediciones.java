@@ -28,10 +28,13 @@ public class Ver_Mediciones extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         this.crud = crud;
         this.user = user;
-        lst_mediciones = user.getMedicionesList();
         dtm_mediciones = (DefaultTableModel) tb_mediciones.getModel();
-        cargar_mediciones();       
-        
+        cargar_mediciones();
+        if (lst_mediciones.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Este usuario aún no tiene mediciones");
+
+        }
+
     }
 
     /**
@@ -53,40 +56,58 @@ public class Ver_Mediciones extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_mediciones = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         tb_mediciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Fecha de Medicion", "Peso", "Altura", "Cuello ", "Hombros", "Pecho", "Cintura", "Muslo", "Pantorillas", "Biceps", "Gluteos"
+                "Fecha de Medicion", "Peso", "Altura", "Cuello ", "Hombros", "Pecho", "Cintura", "Muslo", "Pantorillas", "Biceps", "Gluteos", "IMC"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tb_mediciones.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tb_mediciones.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tb_mediciones);
+
+        jButton1.setText("Eliminar Medición");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -130,6 +151,15 @@ public class Ver_Mediciones extends javax.swing.JFrame {
         v_crear_medicion.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        cargar_mediciones();
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -166,6 +196,7 @@ public class Ver_Mediciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -174,20 +205,18 @@ public class Ver_Mediciones extends javax.swing.JFrame {
     private javax.swing.JTable tb_mediciones;
     // End of variables declaration//GEN-END:variables
 
-    private void cargar_mediciones() {       
+    private void cargar_mediciones() {
+        lst_mediciones = crud.medicionesUser(this.user.getId());
+        dtm_mediciones.setRowCount(0);
         if (lst_mediciones.size() > 0) {
             for (Mediciones medicion : lst_mediciones) {
                 dtm_mediciones.addRow(new Object[]{medicion.getFechaMedicion(), medicion.getPeso(),
                     medicion.getAltura(), medicion.getCuello(), medicion.getCuello(), medicion.getPecho(),
                     medicion.getCintura(), medicion.getMuslo(), medicion.getPantorrillas(), medicion.getBiceps(),
-                    medicion.getGluteos()
+                    medicion.getGluteos(), medicion.getImc()
                 });
             }
-        }else{
-            JOptionPane.showMessageDialog(this, "Este usuario aún no tiene mediciones");
         }
-
-//        tb_mediciones.setModel(dtm_mediciones);
         tb_mediciones.updateUI();
 
     }
