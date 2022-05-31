@@ -152,7 +152,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lb_peso">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Peso (En Kilos):"/>
+            <Property name="text" type="java.lang.String" value="Peso (En Kilos)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_peso">
@@ -161,61 +161,61 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lb_altura">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Altura "/>
+            <Property name="text" type="java.lang.String" value="Altura (En cm)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_cuello">
         </Component>
         <Component class="javax.swing.JLabel" name="lb_cuello">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cuello"/>
+            <Property name="text" type="java.lang.String" value="Cuello (En cm)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lb_hombros">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Hombros"/>
+            <Property name="text" type="java.lang.String" value="Hombros (En cm)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_hombros">
         </Component>
         <Component class="javax.swing.JLabel" name="lb_pecho">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pecho"/>
+            <Property name="text" type="java.lang.String" value="Pecho (En cm)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_pecho">
         </Component>
         <Component class="javax.swing.JLabel" name="tb_cintura">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cintura"/>
+            <Property name="text" type="java.lang.String" value="Cintura (En cm)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_cintura">
         </Component>
         <Component class="javax.swing.JLabel" name="lb_muslo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Muslo"/>
+            <Property name="text" type="java.lang.String" value="Muslo (En cm)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_muslo">
         </Component>
         <Component class="javax.swing.JLabel" name="lb_pantorrillas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pantorrillas"/>
+            <Property name="text" type="java.lang.String" value="Pantorrillas (En cm)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_pantorillas">
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_biceps">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Biceps"/>
+            <Property name="text" type="java.lang.String" value="Biceps (En cm)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_biceps">
         </Component>
         <Component class="javax.swing.JLabel" name="lbl_gluteos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gluteos"/>
+            <Property name="text" type="java.lang.String" value="Gluteos (En cm)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_gluteos">
