@@ -36,5 +36,7 @@ public interface I_CRUD {
     public boolean InsertarMedicion(Mediciones medicion);
 
     public boolean eliminarUsuario(Usuarios user);
+    
+    public boolean actualizarUsuario(Usuarios user);
 
 }

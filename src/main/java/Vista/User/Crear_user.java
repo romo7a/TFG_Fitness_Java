@@ -215,36 +215,43 @@ public class Crear_user extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (!chequearFecha(txf_fecha_nace.getText().trim())) {
-            JOptionPane.showMessageDialog(this, "Formato de fecha incorrecto");
-            return;
-        }
-        if (!txf_email.getText().trim().contains("@")) {
-            JOptionPane.showMessageDialog(this, "Inserte correctamente un correo electrónico correctemente");
-            return;
-        }
-        Usuarios u = new Usuarios();
-        u.setNombre(txf_nombre.getText().trim());
-        u.setApellido(txf_apellido.getText().trim());
-        u.setDni(txf_DNI.getText().trim());
-        u.setEdad(Integer.parseInt(txf_edad.getText().trim()));
-        u.setEmail(txf_email.getText().trim());
-        u.setDireccion(txf_direccion.getText().trim());
-        u.setFechaNacimiento(txf_fecha_nace.getText().trim());
-        if (lista_rutinas.size()<=0) {
-            JOptionPane.showMessageDialog(this, "Cree o seleccione una rutina antes de crear el usuario");
-            return;
-        }
-        u.setIdRutina(lista_rutinas.get(cb_rutina.getSelectedIndex()));
 
-        if (icon != null) {
-            u.setImagenPerfil(utilidades.imageToByte(utilidades.iconToImage(icon)));
-        }
+        try {
 
-        if (crud.InsertarUser(u)) {
-            JOptionPane.showMessageDialog(this, "Usuario creado correctamente");
-        } else {
-            JOptionPane.showMessageDialog(this, "Fallo al crear el usuario");
+            if (!chequearFecha(txf_fecha_nace.getText().trim())) {
+                JOptionPane.showMessageDialog(this, "Formato de fecha incorrecto");
+                return;
+            }
+            if (!txf_email.getText().trim().contains("@")) {
+                JOptionPane.showMessageDialog(this, "Inserte correctamente un correo electrónico correctemente");
+                return;
+            }
+            Usuarios u = new Usuarios();
+            u.setNombre(txf_nombre.getText().trim());
+            u.setApellido(txf_apellido.getText().trim());
+            u.setDni(txf_DNI.getText().trim());
+            u.setEdad(Integer.parseInt(txf_edad.getText().trim()));
+            u.setEmail(txf_email.getText().trim());
+            u.setDireccion(txf_direccion.getText().trim());
+            u.setFechaNacimiento(txf_fecha_nace.getText().trim());
+            if (lista_rutinas.size() <= 0) {
+                JOptionPane.showMessageDialog(this, "Cree o seleccione una rutina antes de crear el usuario");
+                return;
+            }
+            u.setIdRutina(lista_rutinas.get(cb_rutina.getSelectedIndex()));
+
+            if (icon != null) {
+                u.setImagenPerfil(utilidades.imageToByte(utilidades.iconToImage(icon)));
+            }
+
+            if (crud.InsertarUser(u)) {
+                JOptionPane.showMessageDialog(this, "Usuario creado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Fallo al crear el usuario");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El campo edad debe ser numerico");
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -254,7 +261,6 @@ public class Crear_user extends javax.swing.JFrame {
 
     private void lbl_imagen_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imagen_userMouseClicked
         // TODO add your handling code here:
-
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG", "png");
         fileChooser.setMultiSelectionEnabled(false);

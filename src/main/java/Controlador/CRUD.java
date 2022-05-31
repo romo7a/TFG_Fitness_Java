@@ -168,4 +168,28 @@ public class CRUD implements I_CRUD {
         }
     }
 
+    @Override
+    public boolean actualizarUsuario(Usuarios user) {
+        try {
+            em.getTransaction().begin();
+
+            // Primero buscamos que el usuario exista
+            Usuarios user_update = em.find(Usuarios.class, user.getId());
+
+            if (user_update == null) {
+                return false;
+            } else {
+                // Si existe el producto 
+                em.merge(user);
+//                Lo actualizamos 
+                em.getTransaction().commit();
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+    }
+
 }
