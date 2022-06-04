@@ -10,7 +10,6 @@ import Modelo.Usuarios;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -207,21 +206,47 @@ public class CrearMedicion extends javax.swing.JFrame {
     private void btn_aniadir_medicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aniadir_medicionActionPerformed
         // TODO add your handling code here:
         try {
-            comprobacionesTodosLosCamposRellenos();
-            comprobacionesUnidadesMedicion();
-
+//          Comprobación de los campos obligatorios
+            if (!comprobacionesTodosLosCamposRellenos()) {
+                return;
+            }
+            if (!comprobacionesUnidadesMedicion()) {
+                return;
+            }
+//          Inicializo la variable medicion
             medicion = new Mediciones();
+
+//          Compruebo que campos tienen datos y cuales no             
+            if (!txf_pecho.getText().trim().isEmpty()) {
+                medicion.setPecho(new BigDecimal(txf_pecho.getText().trim()));
+            }
+            if (!txf_cintura.getText().trim().isEmpty()) {
+                medicion.setCintura(new BigDecimal(txf_cintura.getText().trim()));
+            }
+
+            if (!txf_cuello.getText().trim().isEmpty()) {
+                medicion.setCuello(new BigDecimal(txf_cuello.getText().trim()));
+            }
+            if (!txf_hombros.getText().trim().isEmpty()) {
+                medicion.setHombros(new BigDecimal(txf_hombros.getText().trim()));
+            }
+            if (!txf_muslo.getText().trim().isEmpty()) {
+                medicion.setMuslo(new BigDecimal(txf_muslo.getText().trim()));
+            }
+            if (!txf_pantorillas.getText().trim().isEmpty()) {
+                medicion.setPantorrillas(new BigDecimal(txf_pantorillas.getText().trim()));
+            }
+            if (!txf_biceps.getText().trim().isEmpty()) {
+                medicion.setBiceps(new BigDecimal(txf_biceps.getText().trim()));
+            }
+            if (!txf_gluteos.getText().trim().isEmpty()) {
+                medicion.setGluteos(new BigDecimal(txf_gluteos.getText().trim()));
+            }
+
             BigDecimal altura = new BigDecimal(txf_altura.getText().trim());
             medicion.setAltura(altura);
-            medicion.setBiceps(new BigDecimal(txf_biceps.getText().trim()));
-            medicion.setCintura(new BigDecimal(txf_cintura.getText().trim()));
-            medicion.setCuello(new BigDecimal(txf_cuello.getText().trim()));
-            medicion.setGluteos(new BigDecimal(txf_gluteos.getText().trim()));
-            medicion.setHombros(new BigDecimal(txf_hombros.getText().trim()));
             medicion.setIdUsuario(user);
-            medicion.setMuslo(new BigDecimal(txf_muslo.getText().trim()));
-            medicion.setPantorrillas(new BigDecimal(txf_pantorillas.getText().trim()));
-            medicion.setPecho(new BigDecimal(txf_pecho.getText().trim()));
+
             BigDecimal peso;
             if (txf_peso.getText().trim().contains(",")) {
                 peso = new BigDecimal(txf_peso.getText().trim().replaceFirst(",", "."));
@@ -230,7 +255,12 @@ public class CrearMedicion extends javax.swing.JFrame {
                 peso = new BigDecimal(txf_peso.getText().trim());
                 medicion.setPeso(peso);
             }
-            medicion.setFechaMedicion(LocalDateTime.now().toString());
+            String fecha = LocalDateTime.now().toString();
+            String fechaFinal = "Día: ";
+            fechaFinal += fecha.split("T")[0] + " , Hora: ";
+            fechaFinal += fecha.split("T")[1].split("\\.")[0];
+
+            medicion.setFechaMedicion(fechaFinal);
 //  IMC            Fórmula: peso (kg) / [estatura (m)]2
             altura = altura.divide(new BigDecimal(100), 2, RoundingMode.HALF_UP);
             BigDecimal altura2 = altura.multiply(altura);
@@ -238,8 +268,11 @@ public class CrearMedicion extends javax.swing.JFrame {
 
             medicion.setImc(altura2);
 
-            crud.InsertarMedicion(medicion);
-            JOptionPane.showMessageDialog(this, "Medidas añadidas correctamente");
+            if (crud.InsertarMedicion(medicion)) {
+                JOptionPane.showMessageDialog(this, "Medidas añadidas correctamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se ha podido añadir la nueva medida");
+            }
             this.dispose();
 
         } catch (NumberFormatException ex) {
@@ -310,68 +343,71 @@ public class CrearMedicion extends javax.swing.JFrame {
     private javax.swing.JTextField txf_peso;
     // End of variables declaration//GEN-END:variables
 
-    private void comprobacionesTodosLosCamposRellenos() {
+    private boolean comprobacionesTodosLosCamposRellenos() {
         if (txf_peso.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Rellene el campo del peso ");
-            return;
+            return false;
         } else if (txf_altura.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Rellene el campo de altura");
-            return;
-        } else if (txf_cuello.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Rellene el campo del cuello");
-            return;
-        } else if (txf_hombros.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Rellene el campo de los hombros");
-            return;
-        } else if (txf_pecho.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Rellene el campo de las pantorrillas");
-            return;
-        } else if (txf_cintura.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Rellene el campo de la cintura");
-            return;
-        } else if (txf_muslo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Rellene el campo del muslo");
-            return;
-        } else if (txf_pantorillas.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Rellene el campo de las pantorrillas");
-            return;
-        } else if (txf_biceps.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Rellene el campo de biceps");
-            return;
-        } else if (txf_gluteos.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Rellene el campo de gluteo");
-            return;
+            return false;
         }
+//         else if (txf_cuello.getText().trim().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Rellene el campo del cuello");
+//            return false;
+//        } else if (txf_hombros.getText().trim().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Rellene el campo de los hombros");
+//            return false;
+//        } else if (txf_pecho.getText().trim().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Rellene el campo de las pantorrillas");
+//            return false;
+//        } else if (txf_cintura.getText().trim().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Rellene el campo de la cintura");
+//            return false;
+//        } else if (txf_muslo.getText().trim().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Rellene el campo del muslo");
+//            return false;
+//        } else if (txf_pantorillas.getText().trim().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Rellene el campo de las pantorrillas");
+//            return false;
+//        } else if (txf_biceps.getText().trim().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Rellene el campo de biceps");
+//            return false;
+//        } else if (txf_gluteos.getText().trim().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Rellene el campo de gluteo");
+//            return false;
+//        }
+        return true;
     }
 
-    private void comprobacionesUnidadesMedicion() {
+    private boolean comprobacionesUnidadesMedicion() {
         if (txf_altura.getText().trim().contains(",") || txf_altura.getText().trim().contains(".")) {
             JOptionPane.showMessageDialog(this, "La altura debe estar dada en cm");
-            return;
+            return false;
         } else if (txf_cuello.getText().trim().contains(",") || txf_cuello.getText().trim().contains(".")) {
             JOptionPane.showMessageDialog(this, "La longitud del cuello debe estar dada en cm");
-            return;
+            return false;
         } else if (txf_hombros.getText().trim().contains(",") || txf_hombros.getText().trim().contains(".")) {
             JOptionPane.showMessageDialog(this, "La longitud de los hombros debe estar dada en cm");
-            return;
+            return false;
         } else if (txf_pecho.getText().trim().contains(",") || txf_pecho.getText().trim().contains(".")) {
             JOptionPane.showMessageDialog(this, "La longitud del pecho debe estar dada en cm");
-            return;
+            return false;
         } else if (txf_cintura.getText().trim().contains(",") || txf_cintura.getText().trim().contains(".")) {
             JOptionPane.showMessageDialog(this, "La longitud de la cintura debe estar dada en cm");
-            return;
+            return false;
         } else if (txf_muslo.getText().trim().contains(",") || txf_muslo.getText().trim().contains(".")) {
             JOptionPane.showMessageDialog(this, "La longitud de los muslos debe estar dada en cm");
-            return;
+            return false;
         } else if (txf_pantorillas.getText().trim().contains(",") || txf_pantorillas.getText().trim().contains(".")) {
             JOptionPane.showMessageDialog(this, "La longitud de las pantorrillas debe estar dada en cm");
-            return;
+            return false;
         } else if (txf_biceps.getText().trim().contains(",") || txf_biceps.getText().trim().contains(".")) {
             JOptionPane.showMessageDialog(this, "La longitud del biceps debe estar dada en cm");
-            return;
+            return false;
         } else if (txf_gluteos.getText().trim().contains(",") || txf_gluteos.getText().trim().contains(".")) {
             JOptionPane.showMessageDialog(this, "La longitud del gluteo debe estar dada en cm");
-            return;
+            return false;
         }
+        return true;
     }
 }

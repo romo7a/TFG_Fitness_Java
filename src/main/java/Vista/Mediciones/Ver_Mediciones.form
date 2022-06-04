@@ -101,6 +101,7 @@
                     <Column editable="false" title="Fecha de Medicion" type="java.lang.Object"/>
                     <Column editable="false" title="Peso" type="java.lang.Object"/>
                     <Column editable="false" title="Altura" type="java.lang.Object"/>
+                    <Column editable="false" title="IMC" type="java.lang.Object"/>
                     <Column editable="false" title="Cuello " type="java.lang.Object"/>
                     <Column editable="false" title="Hombros" type="java.lang.Object"/>
                     <Column editable="false" title="Pecho" type="java.lang.Object"/>
@@ -109,7 +110,6 @@
                     <Column editable="false" title="Pantorillas" type="java.lang.Object"/>
                     <Column editable="false" title="Biceps" type="java.lang.Object"/>
                     <Column editable="false" title="Gluteos" type="java.lang.Object"/>
-                    <Column editable="false" title="IMC" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="selectionMode" type="int" value="1"/>

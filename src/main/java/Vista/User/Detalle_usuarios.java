@@ -51,6 +51,7 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         btn_guardar_edit.setVisible(false);
         utilidades = new Utilidades();
         modo_editar = false;
+        jmn_desactivar_editar.setVisible(false);
 
     }
 
@@ -90,7 +91,7 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         jmi_mediciones = new javax.swing.JMenuItem();
         jmi_rutina = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jmi_editar = new javax.swing.JMenuItem();
+        jmn_editar = new javax.swing.JMenuItem();
         jmn_desactivar_editar = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jmi_eliminar = new javax.swing.JMenuItem();
@@ -128,9 +129,9 @@ public class Detalle_usuarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btn_guardar_edit, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(338, 338, 338)
+                .addGap(370, 370, 370)
                 .addComponent(lbl_imagen_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(338, 338, 338))
+                .addGap(373, 373, 373))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,13 +210,13 @@ public class Detalle_usuarios extends javax.swing.JFrame {
 
         jMenu2.setText("Editar");
 
-        jmi_editar.setText("Activar Modo Editar");
-        jmi_editar.addActionListener(new java.awt.event.ActionListener() {
+        jmn_editar.setText("Activar Modo Editar");
+        jmn_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_editarActionPerformed(evt);
+                jmn_editarActionPerformed(evt);
             }
         });
-        jMenu2.add(jmi_editar);
+        jMenu2.add(jmn_editar);
 
         jmn_desactivar_editar.setText("Desactivar Modo Editar");
         jmn_desactivar_editar.addActionListener(new java.awt.event.ActionListener() {
@@ -332,11 +333,11 @@ public class Detalle_usuarios extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jmi_eliminarActionPerformed
 
-    private void jmi_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_editarActionPerformed
+    private void jmn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmn_editarActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "Modo edición activado");
         editableTrue();
-    }//GEN-LAST:event_jmi_editarActionPerformed
+    }//GEN-LAST:event_jmn_editarActionPerformed
 
     private void jmn_desactivar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmn_desactivar_editarActionPerformed
         // TODO add your handling code here:
@@ -438,11 +439,11 @@ public class Detalle_usuarios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JMenuItem jmi_editar;
     private javax.swing.JMenuItem jmi_eliminar;
     private javax.swing.JMenuItem jmi_mediciones;
     private javax.swing.JMenuItem jmi_rutina;
     private javax.swing.JMenuItem jmn_desactivar_editar;
+    private javax.swing.JMenuItem jmn_editar;
     private javax.swing.JLabel lbl_imagen_user;
     private javax.swing.JTextField txf_DNI;
     private javax.swing.JTextField txf_apellido;
@@ -475,6 +476,10 @@ public class Detalle_usuarios extends javax.swing.JFrame {
     }
 
     private void editableTrue() {
+        //Activar y desactivar botones de menú
+        jmn_editar.setVisible(false);
+        jmn_desactivar_editar.setVisible(true);
+
         txf_DNI.setEditable(true);
         txf_apellido.setEditable(true);
         txf_direccion.setEditable(true);
@@ -486,6 +491,10 @@ public class Detalle_usuarios extends javax.swing.JFrame {
     }
 
     private void editableFalse() {
+        //Activar y desactivar botones de menú
+        jmn_editar.setVisible(true);
+        jmn_desactivar_editar.setVisible(false);
+        
         txf_DNI.setEditable(false);
         txf_apellido.setEditable(false);
         txf_direccion.setEditable(false);

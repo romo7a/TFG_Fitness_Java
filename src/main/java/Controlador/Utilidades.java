@@ -25,7 +25,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.FontUIResource;
 
 /**
  *
@@ -71,11 +70,11 @@ public class Utilidades {
     public void cambiarTema(JFrame ventana) {
         try {
             javax.swing.UIManager.setLookAndFeel(TEMA);
+            setUIFont();
             SwingUtilities.updateComponentTreeUI(ventana);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             JOptionPane.showMessageDialog(null, "Inserte la libreria de apariencia para implementar toda la funcionalidad");
         }
-        setUIFont();
     }
 
     private static void setUIFont() {

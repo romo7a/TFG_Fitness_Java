@@ -8,6 +8,7 @@ import Controlador.CRUD;
 import Modelo.Mediciones;
 import Modelo.Usuarios;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -73,7 +74,7 @@ public class Ver_Mediciones extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Fecha de Medicion", "Peso", "Altura", "Cuello ", "Hombros", "Pecho", "Cintura", "Muslo", "Pantorillas", "Biceps", "Gluteos", "IMC"
+                "Fecha de Medicion", "Peso", "Altura", "IMC", "Cuello ", "Hombros", "Pecho", "Cintura", "Muslo", "Pantorillas", "Biceps", "Gluteos"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -209,15 +210,24 @@ public class Ver_Mediciones extends javax.swing.JFrame {
         lst_mediciones = crud.medicionesUser(this.user.getId());
         dtm_mediciones.setRowCount(0);
         if (lst_mediciones.size() > 0) {
-            for (Mediciones medicion : lst_mediciones) {
+            for (int i = lst_mediciones.size()-1; i >= 0 ; i--) {
+                Mediciones medicion = lst_mediciones.get(i);
                 dtm_mediciones.addRow(new Object[]{medicion.getFechaMedicion(), medicion.getPeso(),
-                    medicion.getAltura(), medicion.getCuello(), medicion.getCuello(), medicion.getPecho(),
+                    medicion.getAltura(), medicion.getImc(), medicion.getCuello(), medicion.getCuello(), medicion.getPecho(),
                     medicion.getCintura(), medicion.getMuslo(), medicion.getPantorrillas(), medicion.getBiceps(),
-                    medicion.getGluteos(), medicion.getImc()
+                    medicion.getGluteos()
                 });
             }
+//            for (Mediciones medicion : lst_mediciones) {
+//                dtm_mediciones.addRow(new Object[]{medicion.getFechaMedicion(), medicion.getPeso(),
+//                    medicion.getAltura(), medicion.getCuello(), medicion.getCuello(), medicion.getPecho(),
+//                    medicion.getCintura(), medicion.getMuslo(), medicion.getPantorrillas(), medicion.getBiceps(),
+//                    medicion.getGluteos(), medicion.getImc()
+//                });
+//            }
         }
         tb_mediciones.updateUI();
 
     }
+
 }
