@@ -8,6 +8,7 @@ import Controlador.CRUD;
 import Controlador.Utilidades;
 import Modelo.Ejercicio;
 import Modelo.TipoEjercicio;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
@@ -19,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -38,6 +40,9 @@ public class Crear_ejercicio extends javax.swing.JFrame {
         this.crud = crud;
         rellenar_cb();
         utilidades = new Utilidades();
+        lbl_imagen.setHorizontalAlignment(SwingConstants.CENTER);
+        lbl_imagen.setVerticalAlignment(SwingConstants.CENTER);
+        lbl_imagen.setFont(new Font("SansSerif", Font.ITALIC, 20));
     }
 
     /**
@@ -196,11 +201,10 @@ public class Crear_ejercicio extends javax.swing.JFrame {
 
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setMultiSelectionEnabled(false);
-        fileChooser.setCurrentDirectory(new File ("./"));
+        fileChooser.setCurrentDirectory(new File("./"));
         FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG", "png");
         fileChooser.addChoosableFileFilter(filter);
-        
-        
+
         int seleccion = fileChooser.showSaveDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             try {
