@@ -8,8 +8,12 @@ import Vista.User.Crear_user;
 import Vista.User.Ver_Usuarios;
 import Vista.Rutina.Crear_rutina;
 import Controlador.CRUD;
+import Controlador.Utilidades;
 import Vista.Ejercicio.Crear_ejercicio;
 import Vista.Rutina.Consultar_Rutinas;
+import java.awt.Font;
+import javax.swing.plaf.FontUIResource;
+
 
 
 /**
@@ -17,15 +21,21 @@ import Vista.Rutina.Consultar_Rutinas;
  * @author Alvaro Romo Villarreal
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-    
-    private CRUD crud;
+
+    private CRUD crud;  
+    private Utilidades util;
+
     /**
      * Creates new form Inicio_de_sesion
      */
     public VentanaPrincipal() {
         initComponents();
+        util = new Utilidades();
+        util.cambiarTema(this);        
         this.setExtendedState(MAXIMIZED_BOTH);
         crud = new CRUD("App_fitness_casa");
+        
+        
     }
 
 //    public void paint(Graphics g) {
@@ -34,7 +44,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 //        setOpacity((float)0.01);
 //        super.paint(g);
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,7 +151,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Ver_Usuarios ver_users = new Ver_Usuarios(crud);
         ver_users.setVisible(true);
-        
+
     }//GEN-LAST:event_mn_consulta_usuariosActionPerformed
 
     private void mn_nuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mn_nuevoUsuarioActionPerformed
@@ -153,13 +162,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        Crear_rutina crearRutina = new Crear_rutina(crud);        
+        Crear_rutina crearRutina = new Crear_rutina(crud);
         crearRutina.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        Crear_ejercicio crear_ej = new Crear_ejercicio(crud);        
+        Crear_ejercicio crear_ej = new Crear_ejercicio(crud);
         crear_ej.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -167,7 +176,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Consultar_Rutinas cr = new Consultar_Rutinas(crud);
         cr.setVisible(true);
-        
+
     }//GEN-LAST:event_mn_consultar_rutinaActionPerformed
 
     /**
@@ -185,7 +194,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
-            }
+            }           
+
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

@@ -4,6 +4,8 @@
  */
 package Controlador;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
@@ -12,15 +14,28 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.FontUIResource;
 
 /**
  *
  * @author Alvaro Romo Villarreal
  */
 public class Utilidades {
+
+//    private static String TEMA = "com.formdev.flatlaf.FlatLightLaf";
+    private static String TEMA = "com.formdev.flatlaf.FlatIntelliJLaf";
+//      private static String TEMA = "com.formdev.flatlaf.FlatDarkLaf";
 
     public Image iconToImage(Icon icon) {
         int w = icon.getIconWidth();
@@ -51,6 +66,35 @@ public class Utilidades {
             System.out.println("Error al convertir imagen a bytes " + e.getMessage());
         }
         return stream.toByteArray();
+    }
+
+    public void cambiarTema(JFrame ventana) {
+        try {
+            javax.swing.UIManager.setLookAndFeel(TEMA);
+            SwingUtilities.updateComponentTreeUI(ventana);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            JOptionPane.showMessageDialog(null, "Inserte la libreria de apariencia para implementar toda la funcionalidad");
+        }
+        setUIFont();
+    }
+
+    private static void setUIFont() {
+        try {
+            Font f = Font.createFont(Font.TRUETYPE_FONT, new File(".\\recursos\\fonts\\Oxygen-Bold.ttf")).deriveFont(13f);
+            java.util.Enumeration keys = UIManager.getDefaults().keys();
+            while (keys.hasMoreElements()) {
+                Object key = keys.nextElement();
+                Object value = UIManager.get(key);
+                if (value instanceof javax.swing.plaf.FontUIResource) {
+                    UIManager.put(key, f);
+                }
+            }
+        } catch (FontFormatException ex) {
+            Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }
