@@ -221,7 +221,8 @@ public class Crear_ejercicio extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setMultiSelectionEnabled(false);
         fileChooser.setCurrentDirectory(new File("./"));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG", "png");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG", "png", "jpg");
         fileChooser.addChoosableFileFilter(filter);
 
         int seleccion = fileChooser.showSaveDialog(this);

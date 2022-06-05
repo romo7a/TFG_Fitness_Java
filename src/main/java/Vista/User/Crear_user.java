@@ -249,7 +249,8 @@ public class Crear_user extends javax.swing.JFrame {
     private void lbl_imagen_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imagen_userMouseClicked
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG", "png");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG", "png", "jpg");
         fileChooser.setMultiSelectionEnabled(false);
         fileChooser.setCurrentDirectory(new File("./"));
         fileChooser.addChoosableFileFilter(filter);
@@ -266,7 +267,7 @@ public class Crear_user extends javax.swing.JFrame {
                 AffineTransform at = AffineTransform.getScaleInstance(img.getWidth() / img.getWidth(), img.getHeight() / img.getHeight());
                 g.drawRenderedImage(img, at);
                 icon = new ImageIcon(archivo);
-                icon = new ImageIcon(dest);                
+                icon = new ImageIcon(dest);
                 lbl_imagen_user.setIcon(new ImageIcon(new ImageIcon(dest).getImage().getScaledInstance(lbl_imagen_user.getWidth(), lbl_imagen_user.getHeight(), Image.SCALE_DEFAULT)));
                 icon.getIconHeight();
                 JOptionPane.showMessageDialog(this, "Imagen cargada correctamente");
@@ -353,4 +354,3 @@ public class Crear_user extends javax.swing.JFrame {
         }
     }
 }
-
