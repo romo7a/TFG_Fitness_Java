@@ -12,6 +12,7 @@ import Controlador.Utilidades;
 import Vista.Ejercicio.Crear_ejercicio;
 import Vista.Rutina.Consultar_Rutinas;
 import java.awt.Font;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.FontUIResource;
 
 
@@ -56,20 +57,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lbl_imgaen = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         mn_nuevoUsuario = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        mn_consulta_usuarios = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        mn_consultar_rutina = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        mn_consulta_usuarios = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        mn_consultar_rutina = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Usuarios");
+        jMenu4.setText("Añadir");
 
         mn_nuevoUsuario.setText("Nuevo Usuario");
         mn_nuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -77,51 +79,56 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 mn_nuevoUsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(mn_nuevoUsuario);
-        jMenu1.add(jSeparator1);
+        jMenu4.add(mn_nuevoUsuario);
+        jMenu4.add(jSeparator4);
 
-        mn_consulta_usuarios.setText("Ver Usuarios");
-        mn_consulta_usuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mn_consulta_usuariosActionPerformed(evt);
-            }
-        });
-        jMenu1.add(mn_consulta_usuarios);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Rutinas");
-
-        mn_consultar_rutina.setText("Ver rutinas");
-        mn_consultar_rutina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mn_consultar_rutinaActionPerformed(evt);
-            }
-        });
-        jMenu2.add(mn_consultar_rutina);
-        jMenu2.add(jSeparator2);
-
-        jMenuItem3.setText("Añadir Rutina");
+        jMenuItem3.setText("Crear Rutina");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenu4.add(jMenuItem3);
+        jMenu4.add(jSeparator5);
 
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Ejercicios");
-
-        jMenuItem4.setText("Añadir Ejercicio");
+        jMenuItem4.setText("Crear Ejercicio");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem4);
+        jMenu4.add(jMenuItem4);
 
-        jMenuBar1.add(jMenu3);
+        jMenuItem1.setText("Crear Tipo de Ejercicio");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Ver");
+
+        mn_consulta_usuarios.setText("Usuarios");
+        mn_consulta_usuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mn_consulta_usuariosActionPerformed(evt);
+            }
+        });
+        jMenu5.add(mn_consulta_usuarios);
+        jMenu5.add(jSeparator6);
+
+        mn_consultar_rutina.setText("Ver Rutinas");
+        mn_consultar_rutina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mn_consultar_rutinaActionPerformed(evt);
+            }
+        });
+        jMenu5.add(mn_consultar_rutina);
+
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -137,7 +144,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_imgaen, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(lbl_imgaen, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,6 +186,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mn_consultar_rutinaActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        util.crearNuevoTipoEjercicio(crud);
+
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -218,14 +232,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JLabel lbl_imgaen;
     private javax.swing.JMenuItem mn_consulta_usuarios;
     private javax.swing.JMenuItem mn_consultar_rutina;

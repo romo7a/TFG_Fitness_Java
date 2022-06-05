@@ -207,4 +207,17 @@ public class CRUD implements I_CRUD {
 
     }
 
+    @Override
+    public boolean InsertarTipoEjercicio(TipoEjercicio tipoEjercicio) {
+        try {
+            em.getTransaction().begin();
+            em.persist(tipoEjercicio);
+            em.getTransaction().commit();
+            return true;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

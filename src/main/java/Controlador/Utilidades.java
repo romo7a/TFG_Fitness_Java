@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Modelo.TipoEjercicio;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
@@ -92,6 +93,24 @@ public class Utilidades {
             Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void crearNuevoTipoEjercicio(CRUD crud) {
+        try {
+
+            String tipoEjercicio = JOptionPane.showInputDialog(null, "Interte un nuevo tipo de ejercicio", "Crear Nuevo Tipo de Ejercicio", JOptionPane.INFORMATION_MESSAGE);
+            if (tipoEjercicio != null) {
+                TipoEjercicio tipoEjInsert = new TipoEjercicio();
+                tipoEjInsert.setTipoEjercicio(tipoEjercicio);
+                crud.InsertarTipoEjercicio(tipoEjInsert);
+                JOptionPane.showMessageDialog(null, "Tipo de Ejercicio creado correctamente");
+            } else {
+                return;
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Fallo al crear el tipo de ejercicio");
         }
 
     }
