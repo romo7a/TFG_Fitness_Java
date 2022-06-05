@@ -78,8 +78,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_nombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txf_apellido = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txf_edad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txf_DNI = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -159,13 +157,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_apellido.setEditable(false);
         txf_apellido.setText("jTextField3");
         jPanel1.add(txf_apellido);
-
-        jLabel3.setText("Edad");
-        jPanel1.add(jLabel3);
-
-        txf_edad.setEditable(false);
-        txf_edad.setText("jTextField3");
-        jPanel1.add(txf_edad);
 
         jLabel4.setText("DNI");
         jPanel1.add(jLabel4);
@@ -428,7 +419,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
     private javax.swing.JButton btn_guardar_edit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -448,7 +438,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
     private javax.swing.JTextField txf_DNI;
     private javax.swing.JTextField txf_apellido;
     private javax.swing.JTextField txf_direccion;
-    private javax.swing.JTextField txf_edad;
     private javax.swing.JTextField txf_fecha_nace;
     private javax.swing.JTextField txf_nombre;
     // End of variables declaration//GEN-END:variables
@@ -458,7 +447,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_apellido.setText(user_updated.getApellido());
         txf_DNI.setText(user_updated.getDni());
         txf_direccion.setText(user_updated.getDireccion());
-        txf_edad.setText(user_updated.getEdad().toString());
         txf_fecha_nace.setText(user_updated.getFechaNacimiento());
     }
 
@@ -483,7 +471,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_DNI.setEditable(true);
         txf_apellido.setEditable(true);
         txf_direccion.setEditable(true);
-        txf_edad.setEditable(true);
         txf_fecha_nace.setEditable(true);
         txf_nombre.setEditable(true);
         btn_guardar_edit.setVisible(true);
@@ -498,7 +485,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_DNI.setEditable(false);
         txf_apellido.setEditable(false);
         txf_direccion.setEditable(false);
-        txf_edad.setEditable(false);
         txf_fecha_nace.setEditable(false);
         txf_nombre.setEditable(false);
         btn_guardar_edit.setVisible(false);
@@ -510,7 +496,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         user_updated.setApellido(txf_apellido.getText().trim());
         user_updated.setDireccion(txf_direccion.getText().trim());
         user_updated.setDni(txf_DNI.getText().trim());
-        user_updated.setEdad(Integer.parseInt(txf_edad.getText().trim()));
         user_updated.setFechaNacimiento(txf_fecha_nace.getText().trim());
         if (icon != null) {
             user_updated.setImagenPerfil(utilidades.imageToByte(utilidades.iconToImage(icon)));
@@ -522,7 +507,6 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_apellido.setText(user_original.getApellido());
         txf_DNI.setText(user_original.getDni());
         txf_direccion.setText(user_original.getDireccion());
-        txf_edad.setText(user_original.getEdad().toString());
         txf_fecha_nace.setText(user_original.getFechaNacimiento());
     }
 }

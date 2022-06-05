@@ -13,15 +13,13 @@ import Vista.Ejercicio.Crear_ejercicio;
 import Vista.Ejercicio.Ver_Ejercicios;
 import Vista.Rutina.Consultar_Rutinas;
 
-
-
 /**
  *
  * @author Alvaro Romo Villarreal
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    private CRUD crud;  
+    private CRUD crud;
     private Utilidades util;
 
     /**
@@ -30,11 +28,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         util = new Utilidades();
-        util.cambiarTema(this);        
+        util.cambiarTema(this);
         this.setExtendedState(MAXIMIZED_BOTH);
+        util.pintarImagen(lbl_wallpaper, "./recursos/img/BackgroundImage.jpg");
         crud = new CRUD("App_fitness_casa");
-        
-        
+
     }
 
 //    public void paint(Graphics g) {
@@ -52,8 +50,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbl_imgaen = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lbl_wallpaper = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         mn_nuevoUsuario = new javax.swing.JMenuItem();
@@ -70,6 +67,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
 
         jMenu4.setText("Añadir");
 
@@ -145,19 +149,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_imgaen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lbl_wallpaper, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_imgaen, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(lbl_wallpaper, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
         );
 
         pack();
@@ -198,16 +194,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         util.crearNuevoTipoEjercicio(crud);
-
-
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         Ver_Ejercicios ventana_vej = new Ver_Ejercicios(crud);
         ventana_vej.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        // TODO add your handling code here:
+        util.pintarImagen(lbl_wallpaper, "./recursos/img/BackgroundImage.jpg");        
+    }//GEN-LAST:event_formComponentResized
 
     /**
      * @param args the command line arguments
@@ -224,7 +223,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
-            }           
+            }
 
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -247,7 +246,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
@@ -259,7 +257,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
-    private javax.swing.JLabel lbl_imgaen;
+    private javax.swing.JLabel lbl_wallpaper;
     private javax.swing.JMenuItem mn_consulta_usuarios;
     private javax.swing.JMenuItem mn_consultar_rutina;
     private javax.swing.JMenuItem mn_nuevoUsuario;

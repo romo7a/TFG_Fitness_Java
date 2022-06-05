@@ -15,6 +15,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -38,6 +39,7 @@ public class Crear_ejercicio extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.crud = crud;
+        listaTipoEjercicios = new ArrayList<TipoEjercicio>();
         rellenar_cb();
         utilidades = new Utilidades();
         lbl_imagen.setHorizontalAlignment(SwingConstants.CENTER);
@@ -74,6 +76,9 @@ public class Crear_ejercicio extends javax.swing.JFrame {
         cb_tipo_ejercicio = new javax.swing.JComboBox<>();
         lbl_imagen = new javax.swing.JLabel();
         btn_guardar_ejercicio = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -170,11 +175,25 @@ public class Crear_ejercicio extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cb_tipo_ejercicio, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(lbl_imagen, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addComponent(lbl_imagen, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_guardar_ejercicio, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jMenu1.setText("Opciones");
+
+        jMenuItem1.setText("Crear Nuevo Tipo de Ejercicio");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,6 +268,12 @@ public class Crear_ejercicio extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_guardar_ejercicioActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        utilidades.crearNuevoTipoEjercicio(crud);
+        rellenar_cb();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -291,6 +316,9 @@ public class Crear_ejercicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_imagen;
     private javax.swing.JTextField txf_descanso;
@@ -299,6 +327,8 @@ public class Crear_ejercicio extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void rellenar_cb() {
+        listaTipoEjercicios.clear();
+        cb_tipo_ejercicio.removeAllItems();
         listaTipoEjercicios = crud.ListarTipoEjercicios();
         for (TipoEjercicio ej : listaTipoEjercicios) {
             cb_tipo_ejercicio.addItem(ej.getTipoEjercicio());

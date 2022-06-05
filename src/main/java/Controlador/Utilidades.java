@@ -19,9 +19,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -36,6 +40,9 @@ public class Utilidades {
 //    private static String TEMA = "com.formdev.flatlaf.FlatLightLaf";
     private static String TEMA = "com.formdev.flatlaf.FlatIntelliJLaf";
 //      private static String TEMA = "com.formdev.flatlaf.FlatDarkLaf";
+
+    private ImageIcon imagen;
+    private Icon icono;
 
     public Image iconToImage(Icon icon) {
         int w = icon.getIconWidth();
@@ -104,7 +111,7 @@ public class Utilidades {
                 TipoEjercicio tipoEjInsert = new TipoEjercicio();
                 tipoEjInsert.setTipoEjercicio(tipoEjercicio);
                 crud.InsertarTipoEjercicio(tipoEjInsert);
-                JOptionPane.showMessageDialog(null, "Tipo de Ejercicio \""+tipoEjercicio+"\" creado correctamente ");
+                JOptionPane.showMessageDialog(null, "Tipo de Ejercicio \"" + tipoEjercicio + "\" creado correctamente ");
             } else {
                 return;
             }
@@ -115,4 +122,28 @@ public class Utilidades {
 
     }
 
+    public boolean validarEmail(String email) {
+        // Patrón para validar el email
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+        Matcher mather = pattern.matcher(email);
+
+        if (mather.find() == true) {
+            // Válido
+            return true;
+        } else {
+            // No válido
+            return false;
+        }
+    }
+
+    public void pintarImagen(JLabel lbl, String ruta) {
+        lbl.setIcon(new ImageIcon());
+        this.imagen = new ImageIcon(ruta);
+        this.icono = new ImageIcon(
+                this.imagen.getImage().getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_DEFAULT));
+        lbl.setIcon(this.icono);
+    }
 }

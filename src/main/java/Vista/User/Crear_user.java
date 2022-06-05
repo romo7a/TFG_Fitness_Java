@@ -70,8 +70,6 @@ public class Crear_user extends javax.swing.JFrame {
         txf_nombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txf_apellido = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txf_edad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txf_DNI = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -103,12 +101,6 @@ public class Crear_user extends javax.swing.JFrame {
 
         txf_apellido.setText("Morales Medina");
         jPanel1.add(txf_apellido);
-
-        jLabel3.setText("Edad");
-        jPanel1.add(jLabel3);
-
-        txf_edad.setText("30");
-        jPanel1.add(txf_edad);
 
         jLabel4.setText("DNI");
         jPanel1.add(jLabel4);
@@ -144,11 +136,6 @@ public class Crear_user extends javax.swing.JFrame {
         jPanel1.add(jLabel7);
 
         cb_rutina.setPreferredSize(new java.awt.Dimension(134, 15));
-        cb_rutina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_rutinaActionPerformed(evt);
-            }
-        });
         jPanel1.add(cb_rutina);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -174,16 +161,17 @@ public class Crear_user extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbl_imagen_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 1082, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 1082, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(413, 413, 413)
+                .addComponent(lbl_imagen_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(429, 429, 429))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_imagen_user, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addComponent(lbl_imagen_user, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -204,19 +192,14 @@ public class Crear_user extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cb_rutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_rutinaActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_cb_rutinaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -227,15 +210,14 @@ public class Crear_user extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Formato de fecha incorrecto");
                 return;
             }
-            if (!txf_email.getText().trim().contains("@")) {
-                JOptionPane.showMessageDialog(this, "Inserte correctamente un correo electrónico correctemente");
+            if (!utilidades.validarEmail(txf_email.getText().trim())) {
+                JOptionPane.showMessageDialog(this, "Email incorrecto");
                 return;
             }
             Usuarios u = new Usuarios();
             u.setNombre(txf_nombre.getText().trim());
             u.setApellido(txf_apellido.getText().trim());
             u.setDni(txf_DNI.getText().trim());
-            u.setEdad(Integer.parseInt(txf_edad.getText().trim()));
             u.setEmail(txf_email.getText().trim());
             u.setDireccion(txf_direccion.getText().trim());
             u.setFechaNacimiento(txf_fecha_nace.getText().trim());
@@ -284,7 +266,7 @@ public class Crear_user extends javax.swing.JFrame {
                 AffineTransform at = AffineTransform.getScaleInstance(img.getWidth() / img.getWidth(), img.getHeight() / img.getHeight());
                 g.drawRenderedImage(img, at);
                 icon = new ImageIcon(archivo);
-                icon = new ImageIcon(dest);
+                icon = new ImageIcon(dest);                
                 lbl_imagen_user.setIcon(new ImageIcon(new ImageIcon(dest).getImage().getScaledInstance(lbl_imagen_user.getWidth(), lbl_imagen_user.getHeight(), Image.SCALE_DEFAULT)));
                 icon.getIconHeight();
                 JOptionPane.showMessageDialog(this, "Imagen cargada correctamente");
@@ -345,7 +327,6 @@ public class Crear_user extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -357,7 +338,6 @@ public class Crear_user extends javax.swing.JFrame {
     private javax.swing.JTextField txf_DNI;
     private javax.swing.JTextField txf_apellido;
     private javax.swing.JTextField txf_direccion;
-    private javax.swing.JTextField txf_edad;
     private javax.swing.JTextField txf_email;
     private javax.swing.JTextField txf_fecha_nace;
     private javax.swing.JTextField txf_nombre;
@@ -373,3 +353,4 @@ public class Crear_user extends javax.swing.JFrame {
         }
     }
 }
+
