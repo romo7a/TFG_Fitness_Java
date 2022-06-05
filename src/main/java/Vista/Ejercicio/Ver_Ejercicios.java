@@ -8,6 +8,7 @@ import Controlador.CRUD;
 import Modelo.Ejercicio;
 import Modelo.TipoEjercicio;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -53,9 +54,11 @@ public class Ver_Ejercicios extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_ejercicios = new javax.swing.JTable();
+        btn_elimina_ejercicio = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_tipo_ejercicio = new javax.swing.JTable();
+        btn_eliminar_tipo_ejercicio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -86,18 +89,29 @@ public class Ver_Ejercicios extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tb_ejercicios);
 
+        btn_elimina_ejercicio.setText("Eliminar Ejercicio");
+        btn_elimina_ejercicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_elimina_ejercicioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
+                    .addComponent(btn_elimina_ejercicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_elimina_ejercicio)
                 .addContainerGap())
         );
 
@@ -123,11 +137,21 @@ public class Ver_Ejercicios extends javax.swing.JFrame {
         tb_tipo_ejercicio.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tb_tipo_ejercicio);
 
+        btn_eliminar_tipo_ejercicio.setText("Eliminar Tipo Ejericico");
+        btn_eliminar_tipo_ejercicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminar_tipo_ejercicioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_eliminar_tipo_ejercicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
@@ -135,11 +159,14 @@ public class Ver_Ejercicios extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 212, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(221, Short.MAX_VALUE)
+                .addComponent(btn_eliminar_tipo_ejercicio)
+                .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                    .addGap(35, 35, 35)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -187,6 +214,42 @@ public class Ver_Ejercicios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tb_ejerciciosMouseClicked
 
+    private void btn_elimina_ejercicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elimina_ejercicioActionPerformed
+        // TODO add your handling code here:
+        int index = tb_ejercicios.getSelectedRow();
+        if (index != -1) {
+            int option = JOptionPane.showConfirmDialog(this, "Desea eliminar este ejercicio " + lst_ejercicios.get(index).getNombre());
+            //      yes = 0, no = 1 , cancel = 2
+            switch (option) {
+                case 0:
+                    crud.eliminarEjercicio(lst_ejercicios.get(index));
+                    cargarTablaEjercicios();
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }//GEN-LAST:event_btn_elimina_ejercicioActionPerformed
+
+    private void btn_eliminar_tipo_ejercicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_tipo_ejercicioActionPerformed
+        // TODO add your handling code here:
+        int index = tb_tipo_ejercicio.getSelectedRow();
+        if (index != -1) {
+            int option = JOptionPane.showConfirmDialog(this, "Desea eliminar este tipo de ejercicio " + lst_tipo_ejercicios.get(index).getTipoEjercicio());
+            //      yes = 0, no = 1 , cancel = 2
+            switch (option) {
+                case 0:
+                    crud.eliminarTipoDeEjercicio(lst_tipo_ejercicios.get(index));
+                    cargarTablaTipoEjercicios();
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }//GEN-LAST:event_btn_eliminar_tipo_ejercicioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -223,6 +286,8 @@ public class Ver_Ejercicios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_elimina_ejercicio;
+    private javax.swing.JButton btn_eliminar_tipo_ejercicio;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

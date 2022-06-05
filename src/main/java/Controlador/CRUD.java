@@ -15,6 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -223,13 +224,43 @@ public class CRUD implements I_CRUD {
     @Override
     public String consultarTipoEjercicio(int id_tipoEjercicio) {
         try {
-            em.getTransaction().begin();           
+            em.getTransaction().begin();
             TipoEjercicio tipo_ejercicio = em.find(TipoEjercicio.class, id_tipoEjercicio);
             return tipo_ejercicio.getTipoEjercicio();
         } catch (Exception e) {
             return " ";
         }
 
+    }
+
+    @Override
+    public boolean eliminarEjercicio(Ejercicio ejercicio) {
+        try {
+            em.getTransaction().begin();
+            Ejercicio e = em.merge(ejercicio);
+            em.remove(e);
+            em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Ejercicio eliminado correctamente");
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar el ejercicio");
+            return false;
+        }
+    }
+
+    @Override
+    public boolean eliminarTipoDeEjercicio(TipoEjercicio tipo_ejercicio) {
+        try {
+            em.getTransaction().begin();
+            TipoEjercicio e = em.merge(tipo_ejercicio);
+            em.remove(e);
+            em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Tipo de ejercicio eliminado correctamente");
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar el tipo de ejercicio");
+            return false;
+        }
     }
 
 }

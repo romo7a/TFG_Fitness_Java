@@ -104,7 +104,7 @@ public class Utilidades {
                 TipoEjercicio tipoEjInsert = new TipoEjercicio();
                 tipoEjInsert.setTipoEjercicio(tipoEjercicio);
                 crud.InsertarTipoEjercicio(tipoEjInsert);
-                JOptionPane.showMessageDialog(null, "Tipo de Ejercicio creado correctamente");
+                JOptionPane.showMessageDialog(null, "Tipo de Ejercicio \""+tipoEjercicio+"\" creado correctamente ");
             } else {
                 return;
             }
