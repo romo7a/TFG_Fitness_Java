@@ -40,6 +40,8 @@ public interface I_CRUD {
     public boolean eliminarUsuario(Usuarios user);
 
     public boolean actualizarUsuario(Usuarios user);
+    
+    public String consultarTipoEjercicio(int id_tipoEjercicio);
 
     public List<Mediciones> medicionesUser(int idUser);
 

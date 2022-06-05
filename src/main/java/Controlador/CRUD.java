@@ -220,4 +220,16 @@ public class CRUD implements I_CRUD {
         }
     }
 
+    @Override
+    public String consultarTipoEjercicio(int id_tipoEjercicio) {
+        try {
+            em.getTransaction().begin();           
+            TipoEjercicio tipo_ejercicio = em.find(TipoEjercicio.class, id_tipoEjercicio);
+            return tipo_ejercicio.getTipoEjercicio();
+        } catch (Exception e) {
+            return " ";
+        }
+
+    }
+
 }

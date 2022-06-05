@@ -10,10 +10,8 @@ import Vista.Rutina.Crear_rutina;
 import Controlador.CRUD;
 import Controlador.Utilidades;
 import Vista.Ejercicio.Crear_ejercicio;
+import Vista.Ejercicio.Ver_Ejercicios;
 import Vista.Rutina.Consultar_Rutinas;
-import java.awt.Font;
-import javax.swing.JOptionPane;
-import javax.swing.plaf.FontUIResource;
 
 
 
@@ -68,6 +66,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mn_consulta_usuarios = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         mn_consultar_rutina = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,6 +127,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(mn_consultar_rutina);
+        jMenu5.add(jSeparator1);
+
+        jMenuItem2.setText("Ejercicios / Tipo Ejercicios");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem2);
 
         jMenuBar1.add(jMenu5);
 
@@ -193,6 +202,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        Ver_Ejercicios ventana_vej = new Ver_Ejercicios(crud);
+        ventana_vej.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -236,8 +252,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
