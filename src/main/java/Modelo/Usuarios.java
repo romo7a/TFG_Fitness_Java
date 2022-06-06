@@ -195,7 +195,11 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelo.Usuarios[ id=" + id + " ]";
+        return "Id usuario: " + this.id + ", Nombre: " + this.nombre + ", Apellido: " + this.apellido + ", Direccion: " + this.direccion + ", e-mail: " + this.email + ", DNI: " + this.dni + ", Fecha_Nacimiento: " + this.fechaNacimiento;
     }
-    
+
+    public String toStringUserCSV() {
+        return "Id usuario: " + this.id + ", Nombre: " + this.nombre + ", Apellido: " + this.apellido + ", Direccion: " + this.direccion + ", e-mail: " + this.email + ", DNI: " + this.dni + ", Fecha_Nacimiento: " + this.fechaNacimiento;
+    }
+
 }

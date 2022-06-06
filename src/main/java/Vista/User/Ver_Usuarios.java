@@ -5,21 +5,13 @@
 package Vista.User;
 
 import Controlador.CRUD;
+import Controlador.Utilidades;
 import Modelo.Usuarios;
 import java.awt.Button;
-import java.awt.Color;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
 
 /**
  *
@@ -31,6 +23,8 @@ public class Ver_Usuarios extends javax.swing.JFrame {
     private DefaultTableModel dtm;
     private Button btn_detalle;
     private CRUD crud;
+    private Utilidades util;
+    private DefaultListModel dlm_usuarios;
 
     public Ver_Usuarios(CRUD crud) {
         initComponents();
@@ -38,6 +32,7 @@ public class Ver_Usuarios extends javax.swing.JFrame {
         this.crud = crud;
         this.users_list = new ArrayList<Usuarios>();
         this.dtm = (DefaultTableModel) tabla_users.getModel();
+        util = new Utilidades();
         cargarDatos();
 
     }
@@ -59,6 +54,9 @@ public class Ver_Usuarios extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_users = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -94,6 +92,20 @@ public class Ver_Usuarios extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_users);
 
+        jMenu2.setText("Exportar");
+
+        jMenuItem1.setText("CSV");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,7 +119,7 @@ public class Ver_Usuarios extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -130,6 +142,11 @@ public class Ver_Usuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         cargarDatos();
     }//GEN-LAST:event_formWindowActivated
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        util.crearFicheroUsuarios(dlm_usuarios);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,22 +184,27 @@ public class Ver_Usuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_users;
     // End of variables declaration//GEN-END:variables
 
     private void cargarDatos() {
-//        try {
+        try {
+            dlm_usuarios = new DefaultListModel();
             users_list.clear();
             dtm.setRowCount(0);
             users_list = crud.ConsultarUsuario();
             dtm = (DefaultTableModel) tabla_users.getModel();
             for (Usuarios user : users_list) {
                 dtm.addRow(new Object[]{user.getNombre(), user.getApellido(), user.getDni(), user.getDireccion(), (Button) btn_detalle});
+                dlm_usuarios.addElement(user);
             }
-//        } catch (Exception e) {
-//            System.err.println(e.getMessage());
-//        }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
 
     }
 }

@@ -16,12 +16,17 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -146,4 +151,46 @@ public class Utilidades {
                 this.imagen.getImage().getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_DEFAULT));
         lbl.setIcon(this.icono);
     }
+
+    /**
+     * Crea un fichero historial con las consultas recibidas
+     *
+     * @param usuarios
+     */
+    public void crearFicheroUsuarios(DefaultListModel usuarios) {
+        String fecha = LocalDateTime.now().toString().split("\\.")[0].replace("-", "_").replace(":", "_");
+        File n_fichero = new File ("./DocumentosGenerados/Usuarios_"+fecha+".csv");
+        FileWriter fr = null;
+        try {
+            fr = new FileWriter(n_fichero);
+            PrintWriter pw = new PrintWriter(fr);
+            for (int i = 0; i < usuarios.size(); i++) {
+                String sinSalto = quitaSaltosLinea(usuarios.getElementAt(i).toString());
+                pw.print(sinSalto + "\n");
+            }
+            fr.close();
+            pw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fr.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    /**
+     * quita los saltos de línea para escribirlos escribirlos bien en el fichero
+     * historial
+     *
+     * @param consulta
+     * @return
+     */
+    public String quitaSaltosLinea(String consulta) {
+        consulta = consulta.replace("\n", " ");
+        return consulta;
+    }
+    
 }
