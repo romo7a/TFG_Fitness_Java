@@ -5,6 +5,7 @@
 package Vista.User;
 
 import Controlador.CRUD;
+import Controlador.CalculaNif;
 import Controlador.Utilidades;
 import Modelo.Rutina;
 import Modelo.Usuarios;
@@ -35,6 +36,7 @@ public class Crear_user extends javax.swing.JFrame {
     private List<Rutina> lista_rutinas;
     private ImageIcon icon;
     private Utilidades utilidades;
+    private CalculaNif NIF;
 
     public Crear_user(CRUD crud) {
         initComponents();
@@ -45,6 +47,7 @@ public class Crear_user extends javax.swing.JFrame {
         lbl_imagen_user.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_imagen_user.setVerticalAlignment(SwingConstants.CENTER);
         lbl_imagen_user.setFont(new Font("SansSerif", Font.ITALIC, 20));
+        NIF = new CalculaNif();
     }
 
     /**
@@ -105,7 +108,8 @@ public class Crear_user extends javax.swing.JFrame {
         jLabel4.setText("DNI");
         jPanel1.add(jLabel4);
 
-        txf_DNI.setText("06234678C");
+        txf_DNI.setText("17595503C");
+        txf_DNI.setToolTipText("Número de NIF");
         txf_DNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txf_DNIActionPerformed(evt);
@@ -149,6 +153,8 @@ public class Crear_user extends javax.swing.JFrame {
 
         lbl_imagen_user.setText("Añade tu imagen");
         lbl_imagen_user.setToolTipText("Añade la imagen del usuario");
+        lbl_imagen_user.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        lbl_imagen_user.setVerifyInputWhenFocusTarget(false);
         lbl_imagen_user.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbl_imagen_userMouseClicked(evt);
@@ -217,6 +223,10 @@ public class Crear_user extends javax.swing.JFrame {
             Usuarios u = new Usuarios();
             u.setNombre(txf_nombre.getText().trim());
             u.setApellido(txf_apellido.getText().trim());
+            if (!NIF.isvalido(txf_DNI.getText().trim())) {
+                JOptionPane.showMessageDialog(this, "DNI no valido");
+                return;
+            }
             u.setDni(txf_DNI.getText().trim());
             u.setEmail(txf_email.getText().trim());
             u.setDireccion(txf_direccion.getText().trim());

@@ -59,10 +59,6 @@ public class Ver_Usuarios extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_users = new javax.swing.JTable();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -98,23 +94,6 @@ public class Ver_Usuarios extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_users);
 
-        jMenu1.setText("Archivo");
-
-        jMenuItem1.setText("Exportar PDF");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,7 +107,7 @@ public class Ver_Usuarios extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -146,72 +125,6 @@ public class Ver_Usuarios extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_tabla_usersMouseClicked
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        int rows = tabla_users.getRowCount();
-        int cols = tabla_users.getColumnCount();
-//            Creamos un documento            
-        PDDocument documento = new PDDocument();
-//            Creamos la página, que le decimos que tiene el tamaño a4
-        PDPage pagina = new PDPage(PDRectangle.A4);
-        documento.addPage(pagina);
-
-        try (PDPageContentStream contentStream = new PDPageContentStream(documento, pagina, PDPageContentStream.AppendMode.APPEND, true, true)) {
-            float x = 30f;
-            float y = pagina.getMediaBox().getUpperRightY() - 30f;
-//            Altura de la línea
-            float rowHeight = 15.0f;
-            float colWidth = 40.0f;
-            contentStream.saveGraphicsState();
-
-//
-////            Le añadimos a nuestro documento el formato de la página
-//            documento.addPage(pagina);
-////            Creamos este objeto que nos va a permitir escribir dentro de nuestra página
-////            PDPageContentStream contentStream = new PDPageContentStream(documento, pagina);
-////            Le indicamos que vamos a empezar a escribir en la parte de arriba del documento
-//            contentStream.beginText();
-////            Le indicamos el tipo de letra de nuestro documento y el tamaño de esta 
-//            contentStream.setFont(PDType1Font.TIMES_ROMAN, 12);
-////            Le indicamos la línea donde queremos que empiece a escribir
-//            contentStream.newLineAtOffset(20, pagina.getMediaBox().getHeight() - 52);
-            //Color de linea
-            contentStream.setStrokingColor(Color.BLACK);
-            //Grosor de línea
-            contentStream.setLineWidth(0.5f);
-            //drawTable
-
-            //drawTable
-            for (int row = 0; row <= rows; row++) {
-                float xStart = x;
-                float yStart = y - row * rowHeight;
-                float xEnd = xStart + cols * colWidth;
-                float yEnd = yStart;
-                contentStream.moveTo(xStart, yStart);
-                contentStream.lineTo(xEnd, yEnd);
-            }
-            for (int col = 0; col <= cols; col++) {
-                float xStart = x + col * colWidth;
-                float yStart = y;
-                float xEnd = xStart;
-                float yEnd = yStart - rows * rowHeight;
-                contentStream.moveTo(xStart, yStart);
-                contentStream.lineTo(xEnd, yEnd);
-            }
-            contentStream.stroke();
-            contentStream.restoreGraphicsState();
-
-            contentStream.close();
-            documento.save(new File("./DocumentosGenerados/archivo.pdf"));
-            documento.close();
-            JOptionPane.showMessageDialog(this, "PDF generado correctamente");
-
-        } catch (IOException ex) {
-            Logger.getLogger(Ver_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Error al generar el PDF");
-        }
-
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -254,10 +167,6 @@ public class Ver_Usuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_users;
     // End of variables declaration//GEN-END:variables
