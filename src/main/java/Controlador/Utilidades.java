@@ -158,7 +158,7 @@ public class Utilidades {
      */
     public void crearFicheroUsuarios(DefaultListModel usuarios) {
         String fecha = LocalDateTime.now().toString().split("\\.")[0].replace("-", "_").replace(":", "_");
-        File n_fichero = new File ("./DocumentosGenerados/Usuarios_"+fecha+".csv");
+        File n_fichero = new File("./DocumentosGenerados/Usuarios_" + fecha + ".csv");
         FileWriter fr = null;
         try {
             fr = new FileWriter(n_fichero);
@@ -169,8 +169,10 @@ public class Utilidades {
             }
             fr.close();
             pw.close();
+            JOptionPane.showMessageDialog(null, "Fichero generado correctamente " + n_fichero.getName());
         } catch (IOException ex) {
             Logger.getLogger(Utilidades.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al generar el fichero");
         } finally {
             try {
                 fr.close();
@@ -191,5 +193,5 @@ public class Utilidades {
         consulta = consulta.replace("\n", " ");
         return consulta;
     }
-    
+
 }

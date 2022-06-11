@@ -6,6 +6,7 @@ package Vista.User;
 
 import Controlador.CRUD;
 import Controlador.Utilidades;
+import Modelo.Rutina;
 import Modelo.Usuarios;
 import Vista.Mediciones.Ver_Mediciones;
 import Vista.Rutina.Ver_rutina_user;
@@ -17,6 +18,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -37,6 +40,7 @@ public class Detalle_usuarios extends javax.swing.JFrame {
     private Utilidades utilidades;
     private boolean modo_editar;
     private static Usuarios user_original;
+    List<Rutina> lst_rutinas;
 
     public void setCrud(CRUD crud) {
         this.crud = crud;
@@ -84,6 +88,8 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_fecha_nace = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txf_direccion = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        cb_rutina = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmi_mediciones = new javax.swing.JMenuItem();
@@ -178,6 +184,11 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_direccion.setEditable(false);
         txf_direccion.setText("jTextField3");
         jPanel1.add(txf_direccion);
+
+        jLabel3.setText("Rutina:");
+        jPanel1.add(jLabel3);
+
+        jPanel1.add(cb_rutina);
 
         jMenu1.setText("Ver");
 
@@ -289,21 +300,15 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         }
         int option = JOptionPane.showConfirmDialog(this, "¿Desea guardar los cambios?");
 //      yes = 0, no = 1 , cancel = 2
-        switch (option) {
-            case 0:
-                updateUser();
-                if (crud.actualizarUsuario(user_updated)) {
-                    JOptionPane.showMessageDialog(this, "Usuario Actualizado Correctamente");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Error al actualizar el usuario");
-                }
-                this.dispose();
-                break;
-            default:
-                break;
+        if (option == 0) {
+            updateUser();
+            if (crud.actualizarUsuario(user_updated)) {
+                JOptionPane.showMessageDialog(this, "Usuario Actualizado Correctamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al actualizar el usuario");
+            }
+            this.dispose();
         }
-
-        editableFalse();
 
     }//GEN-LAST:event_btn_guardar_editActionPerformed
 
@@ -311,16 +316,15 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         // TODO add your handling code here:user_updated
 //        yes = 0, no = 1 , cancel = 2
         int option = JOptionPane.showConfirmDialog(this, "Desea eleminar el usuario " + this.user_updated.getNombre());
-        switch (option) {
-            case 0:
-                if (crud.eliminarUsuario(this.user_updated)) {
-                    JOptionPane.showMessageDialog(this, "Usuario eliminado correctamente");
-                }
+        if (option == 0) {
+            if (crud.eliminarUsuario(this.user_updated)) {
+                JOptionPane.showMessageDialog(this, "Usuario eliminado correctamente");
                 this.dispose();
-                break;
-            default:
-                break;
+            }
+        } else {
+            return;
         }
+
 
     }//GEN-LAST:event_jmi_eliminarActionPerformed
 
@@ -328,6 +332,7 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "Modo edición activado");
         editableTrue();
+        cargar_cb_rutinas();
     }//GEN-LAST:event_jmn_editarActionPerformed
 
     private void jmn_desactivar_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmn_desactivar_editarActionPerformed
@@ -335,16 +340,11 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         //        yes = 0, no = 1 , cancel = 2
         int option = JOptionPane.showConfirmDialog(this, "¿Desea salir del modo edición sin guardar cambios?\nSe volverán a cargar"
                 + "los datos del usuario original ");
-        switch (option) {
-            case 0:
-                cargarOriginal();
-                break;
-            default:
-                break;
+        if (option == 0) {
+            cargarOriginal();
+            editableFalse();
+            JOptionPane.showMessageDialog(this, "Modo editar Desactivado");
         }
-
-        editableFalse();
-        JOptionPane.showMessageDialog(this, "Modo editar Desactivado");
     }//GEN-LAST:event_jmn_desactivar_editarActionPerformed
 
     private void lbl_imagen_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_imagen_userMouseClicked
@@ -417,8 +417,10 @@ public class Detalle_usuarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_guardar_edit;
+    private javax.swing.JComboBox<String> cb_rutina;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -448,6 +450,7 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_DNI.setText(user_updated.getDni());
         txf_direccion.setText(user_updated.getDireccion());
         txf_fecha_nace.setText(user_updated.getFechaNacimiento());
+        cb_rutina.addItem(user_updated.getIdRutina().getNombre());
     }
 
     private void cargarImagen() {
@@ -481,7 +484,7 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         //Activar y desactivar botones de menú
         jmn_editar.setVisible(true);
         jmn_desactivar_editar.setVisible(false);
-        
+
         txf_DNI.setEditable(false);
         txf_apellido.setEditable(false);
         txf_direccion.setEditable(false);
@@ -497,6 +500,11 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         user_updated.setDireccion(txf_direccion.getText().trim());
         user_updated.setDni(txf_DNI.getText().trim());
         user_updated.setFechaNacimiento(txf_fecha_nace.getText().trim());
+        if (cb_rutina.getSelectedIndex() == -1) {
+            return;
+        }
+
+        user_updated.setIdRutina(lst_rutinas.get(cb_rutina.getSelectedIndex()));
         if (icon != null) {
             user_updated.setImagenPerfil(utilidades.imageToByte(utilidades.iconToImage(icon)));
         }
@@ -508,5 +516,17 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_DNI.setText(user_original.getDni());
         txf_direccion.setText(user_original.getDireccion());
         txf_fecha_nace.setText(user_original.getFechaNacimiento());
+        cb_rutina.removeAllItems();
+        cb_rutina.addItem(user_original.getIdRutina().getNombre());
+    }
+
+    private void cargar_cb_rutinas() {
+        cb_rutina.removeAllItems();
+        lst_rutinas = crud.ListarRutinas();
+
+        for (Rutina lst_rutina : lst_rutinas) {
+            cb_rutina.addItem(lst_rutina.getNombre());;
+        }
+
     }
 }

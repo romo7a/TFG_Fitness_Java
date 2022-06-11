@@ -135,6 +135,11 @@ public class Ver_Ejercicios extends javax.swing.JFrame {
         });
         tb_tipo_ejercicio.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tb_tipo_ejercicio.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tb_tipo_ejercicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_tipo_ejercicioMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tb_tipo_ejercicio);
 
         btn_eliminar_tipo_ejercicio.setText("Eliminar Tipo Ejericico");
@@ -223,6 +228,7 @@ public class Ver_Ejercicios extends javax.swing.JFrame {
             switch (option) {
                 case 0:
                     crud.eliminarEjercicio(lst_ejercicios.get(index));
+                    lst_ejercicios.remove(index);
                     cargarTablaEjercicios();
                     break;
                 default:
@@ -249,6 +255,11 @@ public class Ver_Ejercicios extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btn_eliminar_tipo_ejercicioActionPerformed
+
+    private void tb_tipo_ejercicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_tipo_ejercicioMouseClicked
+        // TODO add your handling code here:
+        cargarTablaEjercicios();
+    }//GEN-LAST:event_tb_tipo_ejercicioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -298,16 +309,22 @@ public class Ver_Ejercicios extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarTablaEjercicios() {
-        dtm_ejercicios.setRowCount(0);
-        lst_ejercicios = crud.ListarEjercicios();
-        for (Ejercicio ejercicio : lst_ejercicios) {
-            dtm_ejercicios.addRow(new Object[]{
-                ejercicio.getNombre().trim(),
-                ejercicio.getDescripcion().trim(),
-                ejercicio.getDescanso().trim(),
-                ejercicio.getIdTipoEjercicio().getTipoEjercicio()
-            });
+        int index = tb_tipo_ejercicio.getSelectedRow();
+        if (index != -1) {
+            dtm_ejercicios.setRowCount(0);
+            TipoEjercicio tipoEjercicio = lst_tipo_ejercicios.get(index);
+            lst_ejercicios = tipoEjercicio.getEjercicioList();
+            for (Ejercicio ejercicio : lst_ejercicios) {
+                dtm_ejercicios.addRow(new Object[]{
+                    ejercicio.getNombre().trim(),
+                    ejercicio.getDescripcion().trim(),
+                    ejercicio.getDescanso().trim(),
+                    ejercicio.getIdTipoEjercicio().getTipoEjercicio()
+                });
+            }
+
         }
+
     }
 
     private void cargarTablaTipoEjercicios() {

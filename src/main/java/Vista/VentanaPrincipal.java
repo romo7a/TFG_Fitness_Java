@@ -30,7 +30,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         util = new Utilidades();
         util.cambiarTema(this);
         this.setExtendedState(MAXIMIZED_BOTH);
-        util.pintarImagen(lbl_wallpaper, "./recursos/img/BackgroundImage.jpg");
+        util.pintarImagen(lbl_wallpaper, "./recursos/img/BackgroundImage_logo.png");
         crud = new CRUD("App_fitness_casa");
 
     }
@@ -68,12 +68,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
         setPreferredSize(new java.awt.Dimension(1920, 1080));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
             }
         });
+
+        lbl_wallpaper.setMaximumSize(null);
+        lbl_wallpaper.setPreferredSize(null);
 
         jMenu4.setText("Añadir");
 
@@ -149,11 +153,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_wallpaper, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lbl_wallpaper, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_wallpaper, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lbl_wallpaper, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -205,7 +213,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         // TODO add your handling code here:
-        util.pintarImagen(lbl_wallpaper, "./recursos/img/BackgroundImage.jpg");        
+//        util.pintarImagen(lbl_wallpaper, "./recursos/img/BackgroundImage_logo.png");        
     }//GEN-LAST:event_formComponentResized
 
     /**

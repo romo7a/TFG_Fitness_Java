@@ -69,9 +69,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_nombre">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Hector "/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -79,9 +76,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_apellido">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Morales Medina"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -90,7 +84,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txf_DNI">
           <Properties>
-            <Property name="text" type="java.lang.String" value="17595503C"/>
             <Property name="toolTipText" type="java.lang.String" value="N&#xfa;mero de NIF"/>
           </Properties>
           <Events>
@@ -104,7 +97,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txf_fecha_nace">
           <Properties>
-            <Property name="text" type="java.lang.String" value="01-01-2000"/>
             <Property name="toolTipText" type="java.lang.String" value="dd-MM-yyyy"/>
           </Properties>
         </Component>
@@ -114,9 +106,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txf_direccion">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C/Fernando Octavio,19"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -125,7 +114,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txf_email">
           <Properties>
-            <Property name="text" type="java.lang.String" value="hmorales@gmail.com"/>
+            <Property name="text" type="java.lang.String" value="correo@gmail.com"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">

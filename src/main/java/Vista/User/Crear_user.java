@@ -95,20 +95,15 @@ public class Crear_user extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre");
         jPanel1.add(jLabel1);
-
-        txf_nombre.setText("Hector ");
         jPanel1.add(txf_nombre);
 
         jLabel2.setText("Apellido");
         jPanel1.add(jLabel2);
-
-        txf_apellido.setText("Morales Medina");
         jPanel1.add(txf_apellido);
 
         jLabel4.setText("DNI");
         jPanel1.add(jLabel4);
 
-        txf_DNI.setText("17595503C");
         txf_DNI.setToolTipText("Número de NIF");
         txf_DNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,20 +115,17 @@ public class Crear_user extends javax.swing.JFrame {
         jLabel5.setText("Fecha Nacimiento");
         jPanel1.add(jLabel5);
 
-        txf_fecha_nace.setText("01-01-2000");
         txf_fecha_nace.setToolTipText("dd-MM-yyyy");
         jPanel1.add(txf_fecha_nace);
 
         jLabel6.setText("Direccion");
         jPanel1.add(jLabel6);
-
-        txf_direccion.setText("C/Fernando Octavio,19");
         jPanel1.add(txf_direccion);
 
         jLabel8.setText("e-mail");
         jPanel1.add(jLabel8);
 
-        txf_email.setText("hmorales@gmail.com");
+        txf_email.setText("correo@gmail.com");
         jPanel1.add(txf_email);
 
         jLabel7.setText("Seleccionar Rutina");
@@ -248,6 +240,7 @@ public class Crear_user extends javax.swing.JFrame {
 
             if (crud.InsertarUser(u)) {
                 JOptionPane.showMessageDialog(this, "Usuario creado correctamente");
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Fallo al crear el usuario");
             }

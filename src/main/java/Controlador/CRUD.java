@@ -258,7 +258,7 @@ public class CRUD implements I_CRUD {
             JOptionPane.showMessageDialog(null, "Tipo de ejercicio eliminado correctamente");
             return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar el tipo de ejercicio");
+            JOptionPane.showMessageDialog(null, "Error al eliminar el tipo de ejercicio, aseguresé de que no contiene ningun ejercicicio");
             return false;
         }
     }
