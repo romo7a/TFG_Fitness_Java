@@ -223,10 +223,15 @@ public class Crear_user extends javax.swing.JFrame {
             Usuarios u = new Usuarios();
             u.setNombre(txf_nombre.getText().trim());
             u.setApellido(txf_apellido.getText().trim());
-            if (!NIF.isvalido(txf_DNI.getText().trim())) {
-                JOptionPane.showMessageDialog(this, "DNI no valido");
+            if (txf_DNI.getText().length() < 9) {
+                JOptionPane.showMessageDialog(this, "DNI no válido");
                 return;
             }
+            if (!NIF.isvalido(txf_DNI.getText().trim())) {
+                JOptionPane.showMessageDialog(this, "DNI no válido");
+                return;
+            }
+
             u.setDni(txf_DNI.getText().trim());
             u.setEmail(txf_email.getText().trim());
             u.setDireccion(txf_direccion.getText().trim());
@@ -246,8 +251,6 @@ public class Crear_user extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Fallo al crear el usuario");
             }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El campo edad debe ser numerico");
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton1ActionPerformed

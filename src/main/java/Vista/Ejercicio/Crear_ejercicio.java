@@ -250,7 +250,10 @@ public class Crear_ejercicio extends javax.swing.JFrame {
 
     private void btn_guardar_ejercicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar_ejercicioActionPerformed
         // TODO add your handling code here:
-
+        if (txf_nombre.getText().trim().isEmpty() || txf_descanso.getText().trim().isEmpty() || txf_descripcion.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Complete los tres campos para crear un ejercicio correctamente");            
+            return;
+        }
         Ejercicio e = new Ejercicio();
         e.setNombre(txf_nombre.getText().trim());
         e.setDescripcion(txf_descripcion.getText().trim());
@@ -263,6 +266,7 @@ public class Crear_ejercicio extends javax.swing.JFrame {
         }
         if (crud.InsertarEjercicio(e)) {
             JOptionPane.showMessageDialog(this, "Ejercicio Insertado Correctamente");
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "El ejercicio no se ha podido insertar");
         }
