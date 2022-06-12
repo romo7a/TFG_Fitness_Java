@@ -195,7 +195,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "Id usuario: " + this.id + ", Nombre: " + this.nombre + ", Apellido: " + this.apellido + ", Direccion: " + this.direccion + ", e-mail: " + this.email + ", DNI: " + this.dni + ", Fecha_Nacimiento: " + this.fechaNacimiento;
+        return "Id usuario: " + this.id + ", Nombre: " + this.nombre + ", Apellido: " + this.apellido + ", Direccion: " + this.direccion + ", e-mail: " + this.email + ", DNI: " + this.dni + ", Fecha_Nacimiento: " + this.fechaNacimiento +", rutina"+this.idRutina.getNombre();
     }
 
     public String toStringUserCSV() {
