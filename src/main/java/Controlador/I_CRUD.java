@@ -51,4 +51,6 @@ public interface I_CRUD {
 
     public boolean eliminarRutina(Rutina rutina);
 
+    public boolean eliminarMedicion(Mediciones medicion);
+
 }

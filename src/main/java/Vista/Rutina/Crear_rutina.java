@@ -95,8 +95,6 @@ public class Crear_rutina extends javax.swing.JFrame {
         jLabel1.setMaximumSize(new java.awt.Dimension(41, 30));
         jLabel1.setMinimumSize(new java.awt.Dimension(41, 30));
 
-        txf_nombre_rutina.setText("Pa sorprender al musculo");
-
         jLabel2.setText("Descripción:");
         jLabel2.setMaximumSize(new java.awt.Dimension(48, 16));
         jLabel2.setMinimumSize(new java.awt.Dimension(48, 16));

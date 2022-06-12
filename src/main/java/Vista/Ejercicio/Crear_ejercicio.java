@@ -84,8 +84,6 @@ public class Crear_ejercicio extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txf_descripcion.setText("Bajar hasta abajo");
-
         jLabel2.setText("Descripción:");
         jLabel2.setMaximumSize(new java.awt.Dimension(51, 16));
         jLabel2.setMinimumSize(new java.awt.Dimension(51, 16));
@@ -95,10 +93,6 @@ public class Crear_ejercicio extends javax.swing.JFrame {
         jLabel3.setMaximumSize(new java.awt.Dimension(51, 16));
         jLabel3.setMinimumSize(new java.awt.Dimension(51, 16));
         jLabel3.setPreferredSize(new java.awt.Dimension(51, 16));
-
-        txf_descanso.setText("1 min");
-
-        txf_nombre.setText("Sentadilla");
 
         jLabel4.setText("Nombre");
         jLabel4.setMaximumSize(new java.awt.Dimension(51, 16));

@@ -335,6 +335,6 @@ public class Ver_Ejercicios extends javax.swing.JFrame {
                 tipo_ej.getTipoEjercicio()
             });
         }
-
+        cargarTablaEjercicios();
     }
 }

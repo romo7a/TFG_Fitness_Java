@@ -28,8 +28,14 @@ public class CRUD implements I_CRUD {
     private EntityManager em;
 
     public CRUD(String up) {
-        emf = Persistence.createEntityManagerFactory(up);
-        em = emf.createEntityManager();
+        try {
+            emf = Persistence.createEntityManagerFactory(up);
+            em = emf.createEntityManager();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la Base de Datos");
+            System.exit(1);
+        }
+        
     }
 
     @Override
@@ -149,7 +155,7 @@ public class CRUD implements I_CRUD {
         try {
             em.getTransaction().begin();
             em.persist(medicion);
-            em.getTransaction().commit();            
+            em.getTransaction().commit();
             return true;
 
         } catch (Exception e) {
@@ -276,6 +282,22 @@ public class CRUD implements I_CRUD {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al eliminar la rutina, revise que ningún usuario está utilizando esta rutina de entrenamiento");
             return false;
-        }    }
+        }
+    }
+
+    @Override
+    public boolean eliminarMedicion(Mediciones medicion) {
+        try {
+            em.getTransaction().begin();
+            Mediciones m = em.merge(medicion);
+            em.remove(m);
+            em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Medición eliminada correctamente");
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar la medicion");
+            return false;
+        }
+    }
 
 }

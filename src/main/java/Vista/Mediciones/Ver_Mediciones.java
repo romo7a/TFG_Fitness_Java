@@ -154,6 +154,11 @@ public class Ver_Mediciones extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        int index = tb_mediciones.getSelectedRow();
+        if (index !=-1) {
+            crud.eliminarMedicion(lst_mediciones.get(index));
+            lst_mediciones.remove(index);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
