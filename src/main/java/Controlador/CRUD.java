@@ -264,4 +264,18 @@ public class CRUD implements I_CRUD {
         }
     }
 
+    @Override
+    public boolean eliminarRutina(Rutina rutina) {
+        try {
+            em.getTransaction().begin();
+            Rutina r = em.merge(rutina);
+            em.remove(r);
+            em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Rutina eliminada correctamente");
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar la rutina, revise que ningún usuario está utilizando esta rutina de entrenamiento");
+            return false;
+        }    }
+
 }

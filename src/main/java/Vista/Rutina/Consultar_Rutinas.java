@@ -8,6 +8,7 @@ import Controlador.CRUD;
 import Modelo.Ejercicio;
 import Modelo.Rutina;
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -18,21 +19,22 @@ import javax.swing.table.DefaultTableModel;
  * @author Alvaro Romo Villarreal
  */
 public class Consultar_Rutinas extends javax.swing.JFrame {
-
+    
     private CRUD crud;
-    private DefaultTableModel dtm;
+    private DefaultTableModel dtm_rutinas;
     private List<Rutina> lst_rutina;
     private DefaultListModel dlm_ejercicios;
     private Ejercicio e;
-
+    
     public Consultar_Rutinas(CRUD crud) {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-
-        dtm = (DefaultTableModel) tb_rutina.getModel();
+        
+        dtm_rutinas = (DefaultTableModel) tb_rutina.getModel();
         dlm_ejercicios = new DefaultListModel();
         lst_ejercicio.setModel(dlm_ejercicios);
-
+        lst_rutina = new ArrayList<>();
+        
         this.crud = crud;
         cargar_tabla();
     }
@@ -43,11 +45,11 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
     public Consultar_Rutinas() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-
-        dtm = (DefaultTableModel) tb_rutina.getModel();
+        
+        dtm_rutinas = (DefaultTableModel) tb_rutina.getModel();
         dlm_ejercicios = new DefaultListModel();
         lst_ejercicio.setModel(dlm_ejercicios);
-
+        
     }
 
     /**
@@ -65,6 +67,7 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         lst_ejercicio = new javax.swing.JList<>();
         lbl_imagen = new javax.swing.JLabel();
+        btn_eliminar_rutina = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -117,11 +120,21 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
             }
         });
 
+        btn_eliminar_rutina.setText("Eliminar Rutina");
+        btn_eliminar_rutina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminar_rutinaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 893, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_eliminar_rutina, javax.swing.GroupLayout.DEFAULT_SIZE, 881, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -134,17 +147,20 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 611, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(572, Short.MAX_VALUE)
+                .addComponent(btn_eliminar_rutina, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lbl_imagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE))
-                    .addContainerGap()))
+                            .addComponent(lbl_imagen, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE))
+                    .addGap(42, 42, 42)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,6 +233,16 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_formComponentResized
 
+    private void btn_eliminar_rutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_rutinaActionPerformed
+        // TODO add your handling code here:
+        int index = tb_rutina.getSelectedRow();
+        if (index != -1) {
+            crud.eliminarRutina((Rutina) lst_rutina.get(index));
+            lst_rutina.remove(index);
+            cargar_tabla();
+        }
+    }//GEN-LAST:event_btn_eliminar_rutinaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -253,6 +279,7 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_eliminar_rutina;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -262,12 +289,14 @@ public class Consultar_Rutinas extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargar_tabla() {
-        lst_rutina = crud.ListarRutinas();
+        lst_rutina.clear();
+        dtm_rutinas.setRowCount(0);
+        lst_rutina = crud.ListarRutinas();        
         if (lst_rutina.size() != -1) {
             for (Rutina rutina : lst_rutina) {
-                dtm.addRow(new Object[]{rutina.getNombre(), rutina.getDescripcion()});
+                dtm_rutinas.addRow(new Object[]{rutina.getNombre(), rutina.getDescripcion()});
             }
         }
-
+        
     }
 }

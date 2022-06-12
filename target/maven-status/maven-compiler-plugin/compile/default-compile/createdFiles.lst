@@ -5,6 +5,7 @@ Modelo\TipoEjercicio.class
 Vista\Rutina\Consultar_Rutinas$7.class
 Vista\User\Crear_user$4.class
 Vista\User\Detalle_usuarios$5.class
+Vista\VentanaPrincipal$9.class
 Vista\User\Ver_Usuarios$5.class
 Modelo\Rutina.class
 Controlador\I_CRUD.class
@@ -16,6 +17,7 @@ Vista\Rutina\Consultar_Rutinas$3.class
 Vista\Mediciones\CrearMedicion$2.class
 Vista\Mediciones\Ver_Mediciones$3.class
 Vista\Rutina\Crear_rutina$7.class
+Controlador\CalculaNif.class
 Vista\VentanaPrincipal$5.class
 Vista\VentanaPrincipal$2.class
 Vista\Ejercicio\Ver_Ejercicios$3.class
@@ -25,9 +27,11 @@ Vista\Ejercicio\Crear_ejercicio.class
 Vista\User\Crear_user.class
 Vista\Rutina\Consultar_Rutinas$1.class
 Vista\Ejercicio\Crear_ejercicio$1.class
+Vista\Ejercicio\Crear_ejercicio$4.class
 Vista\Mediciones\CrearMedicion$1.class
 Vista\User\Detalle_usuarios$4.class
 Vista\VentanaPrincipal$8.class
+Vista\Ejercicio\Ver_Ejercicios$7.class
 Vista\Rutina\Crear_rutina$6.class
 Vista\Mediciones\Ver_Mediciones.class
 Vista\Rutina\Consultar_Rutinas$4.class
@@ -60,16 +64,14 @@ Modelo\Usuarios.class
 Vista\Rutina\Consultar_Rutinas$6.class
 Vista\Rutina\Crear_rutina$4.class
 Vista\VentanaPrincipal.class
-Pruebas\main.class
-.netbeans_automatic_build
 Vista\Mediciones\Ver_Mediciones$5.class
-Vista\User\Crear_user$5.class
 Modelo\Uno\Rutina_.class
 Vista\User\Detalle_usuarios$6.class
 Vista\VentanaPrincipal$3.class
 Vista\Rutina\Crear_rutina$2.class
 Vista\User\Ver_Usuarios$1.class
 Vista\User\Crear_user$3.class
+Vista\Rutina\Consultar_Rutinas$8.class
 Vista\Rutina\Consultar_Rutinas.class
 Vista\Ejercicio\Ver_Ejercicios$6.class
 Vista\User\Detalle_usuarios$9.class

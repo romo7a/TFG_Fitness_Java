@@ -49,4 +49,6 @@ public interface I_CRUD {
 
     public boolean eliminarTipoDeEjercicio(TipoEjercicio tipo_ejercicio);
 
+    public boolean eliminarRutina(Rutina rutina);
+
 }
