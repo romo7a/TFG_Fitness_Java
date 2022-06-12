@@ -9,6 +9,7 @@ import Modelo.Mediciones;
 import Modelo.Rutina;
 import Modelo.TipoEjercicio;
 import Modelo.Usuarios;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -148,7 +149,7 @@ public class CRUD implements I_CRUD {
         try {
             em.getTransaction().begin();
             em.persist(medicion);
-            em.getTransaction().commit();
+            em.getTransaction().commit();            
             return true;
 
         } catch (Exception e) {
@@ -203,7 +204,7 @@ public class CRUD implements I_CRUD {
             return user.getMedicionesList();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return user.getMedicionesList();
+            return new ArrayList<Mediciones>();
         }
 
     }

@@ -206,7 +206,7 @@ public class Ver_Mediciones extends javax.swing.JFrame {
     private javax.swing.JTable tb_mediciones;
     // End of variables declaration//GEN-END:variables
 
-    private void cargar_mediciones() {
+       private void cargar_mediciones() {
         lst_mediciones = crud.medicionesUser(this.user.getId());
         dtm_mediciones.setRowCount(0);
         if (lst_mediciones.size() > 0) {
@@ -218,13 +218,6 @@ public class Ver_Mediciones extends javax.swing.JFrame {
                     medicion.getGluteos()
                 });
             }
-//            for (Mediciones medicion : lst_mediciones) {
-//                dtm_mediciones.addRow(new Object[]{medicion.getFechaMedicion(), medicion.getPeso(),
-//                    medicion.getAltura(), medicion.getCuello(), medicion.getCuello(), medicion.getPecho(),
-//                    medicion.getCintura(), medicion.getMuslo(), medicion.getPantorrillas(), medicion.getBiceps(),
-//                    medicion.getGluteos(), medicion.getImc()
-//                });
-//            }
         }
         tb_mediciones.updateUI();
 

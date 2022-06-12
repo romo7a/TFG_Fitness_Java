@@ -268,7 +268,7 @@ public class Detalle_usuarios extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         rellenar_campos();
-        cargarImagen();
+        cargarImagen(user_updated.getImagenPerfil());
     }//GEN-LAST:event_formWindowOpened
 
     private void jmi_medicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_medicionesActionPerformed
@@ -453,8 +453,8 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         cb_rutina.addItem(user_updated.getIdRutina().getNombre());
     }
 
-    private void cargarImagen() {
-        if (user_updated.getImagenPerfil() != null) {
+    private void cargarImagen(byte[] imagen) {
+        if (imagen != null) {
             lbl_imagen_user.setText("");
             lbl_imagen_user.setIcon(new ImageIcon(new ImageIcon(user_updated.getImagenPerfil()).getImage().getScaledInstance(lbl_imagen_user.getWidth(), lbl_imagen_user.getHeight(), Image.SCALE_DEFAULT)));
         } else {
@@ -489,7 +489,7 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_apellido.setEditable(false);
         txf_direccion.setEditable(false);
         txf_fecha_nace.setEditable(false);
-        txf_nombre.setEditable(false);
+        txf_nombre.setEditable(false);    
         btn_guardar_edit.setVisible(false);
         modo_editar = false;
     }
@@ -518,6 +518,7 @@ public class Detalle_usuarios extends javax.swing.JFrame {
         txf_fecha_nace.setText(user_original.getFechaNacimiento());
         cb_rutina.removeAllItems();
         cb_rutina.addItem(user_original.getIdRutina().getNombre());
+        cargarImagen(user_original.getImagenPerfil());
     }
 
     private void cargar_cb_rutinas() {
